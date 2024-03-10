@@ -2,6 +2,8 @@ import { Box, Link, SxProps, Typography } from "@mui/material";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { Theme } from "@emotion/react";
+import { useEffect, useState } from "react";
+import { theme } from "../theme";
 
 const telegramLink = "https://t.me/julimatrix";
 const instagramLink = "https://www.instagram.com/juli.matrix/";
@@ -16,13 +18,43 @@ const styles: SxProps<Theme> = {
     fontSize: "30px",
   },
   cursor: "pointer",
+  [theme.breakpoints.down("sm")]: {
+    "& span": {
+      display: "none",
+    },
+  },
+};
+
+const getWindowDimensions = () => {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+};
+
+const useWindowDimensions = () => {
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return windowDimensions;
 };
 
 const Footer = () => {
+  const { height } = useWindowDimensions();
+
   return (
     <Box
       component="footer"
       sx={{
+        display: height > 970 ? "block" : "none",
         paddingTop: "35px",
         backgroundColor: "white",
         boxShadow: "0 4px 39px 0 rgba(0,0,0,0.17)",
@@ -56,6 +88,9 @@ const Footer = () => {
             color: "#74a12e",
             fontSize: "40px",
             fontFamily: "KyivTypeSans-M3 !importantKyivTypeSans",
+            [theme.breakpoints.down("sm")]: {
+              fontSize: "30px",
+            },
           }}
         >
           JULI MATRIX

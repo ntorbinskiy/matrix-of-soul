@@ -1,10 +1,18 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, SxProps, Theme } from "@mui/material";
 import Form from "../components/Form";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { theme } from "../theme";
 
-const styles = { color: "#74a12e", fontSize: "30px", textAlign: "center" };
+const styles: SxProps<Theme> = {
+  color: "#74a12e",
+  fontSize: "30px",
+  textAlign: "center",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "20px",
+  },
+};
 
 const Personal = () => {
   return (
@@ -17,6 +25,9 @@ const Personal = () => {
           justifyContent: "center",
           mt: "200px",
           mb: "200px",
+          [theme.breakpoints.down("sm")]: {
+            flexDirection: "column",
+          },
         }}
       >
         <Button sx={styles}>
