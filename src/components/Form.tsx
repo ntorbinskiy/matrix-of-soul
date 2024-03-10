@@ -7,7 +7,7 @@ import {
   TextField,
   Theme,
 } from "@mui/material";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 interface HeartProps {
   sx: SxProps<Theme>;
@@ -84,39 +84,67 @@ const Heart: FC<HeartProps> = (props) => (
     </svg>
   </SvgIcon>
 );
+const getWindowDimensions = () => {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+};
 
-const Form = () => (
-  <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
-    <Heart sx={{ width: "50px", height: "50px", mb: "25px" }} />
-    <FormControl sx={{ alignItems: "center" }}>
-      <TextField label="Nome" placeholder="Inserisci il tuo nome" />
-      <TextField
-        label="data di nascita"
-        placeholder="Inserisci la tua data di nascita"
-        sx={{ minWidth: "169px" }}
-        type="date"
-      />
-      <Button
-        sx={{
-          background:
-            "linear-gradient(101deg,#6e8641,#c3d4a5),linear-gradient(101deg,#fff,hsla(0,0%,100%,.3))",
-          color: "white",
-          border: "3px solid transparent",
-          backgroundOrigin: "border-box",
-          backgroundClip: "content-box,border-box",
-          WebkitBackdropFilter: "blur(47.275px)",
-          backdropFilter: "blur(47.275px)",
-          borderRadius: "15px",
-          width: "310px",
-          height: "62px",
-          fontSize: "26px",
-          letterSpacing: ".025em",
-        }}
-      >
-        CALCOLARE
-      </Button>
-    </FormControl>
-  </Box>
-);
+const useWindowDimensions = () => {
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return windowDimensions;
+};
+
+const widthThreshold = 800;
+
+const Form = () => {
+  const { width } = useWindowDimensions();
+  return (
+    <Box
+      sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}
+    >
+      <Heart sx={{ width: "50px", height: "50px", mb: "25px" }} />
+      <FormControl sx={{ alignItems: "center" }}>
+        <TextField label="Nome" placeholder="Inserisci il tuo nome" />
+        <TextField
+          label={width > widthThreshold ? "" : "data di nascita"}
+          placeholder="Inserisci la tua data di nascita"
+          sx={{ minWidth: "169px" }}
+          type="date"
+        />
+        <Button
+          sx={{
+            background:
+              "linear-gradient(101deg,#6e8641,#c3d4a5),linear-gradient(101deg,#fff,hsla(0,0%,100%,.3))",
+            color: "white",
+            border: "3px solid transparent",
+            backgroundOrigin: "border-box",
+            backgroundClip: "content-box,border-box",
+            WebkitBackdropFilter: "blur(47.275px)",
+            backdropFilter: "blur(47.275px)",
+            borderRadius: "15px",
+            width: "310px",
+            height: "62px",
+            fontSize: "26px",
+            letterSpacing: ".025em",
+          }}
+        >
+          CALCOLARE
+        </Button>
+      </FormControl>
+    </Box>
+  );
+};
 
 export default Form;

@@ -2,7 +2,7 @@ import { Box, Link, SxProps, Typography } from "@mui/material";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { Theme } from "@emotion/react";
-import { useEffect, useState } from "react";
+
 import { theme } from "../theme";
 
 const telegramLink = "https://t.me/julimatrix";
@@ -25,36 +25,11 @@ const styles: SxProps<Theme> = {
   },
 };
 
-const getWindowDimensions = () => {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height,
-  };
-};
-
-const useWindowDimensions = () => {
-  const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
-  );
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-  return windowDimensions;
-};
-
 const Footer = () => {
-  const { height } = useWindowDimensions();
-
   return (
     <Box
       component="footer"
       sx={{
-        display: height > 970 ? "block" : "none",
         paddingTop: "35px",
         backgroundColor: "white",
         boxShadow: "0 4px 39px 0 rgba(0,0,0,0.17)",

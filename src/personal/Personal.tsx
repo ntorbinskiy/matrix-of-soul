@@ -27,6 +27,8 @@ const Personal = () => {
           mb: "200px",
           [theme.breakpoints.down("sm")]: {
             flexDirection: "column",
+            mb: "65px",
+            mt: 0,
           },
         }}
       >
