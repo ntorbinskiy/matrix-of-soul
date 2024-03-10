@@ -91,6 +91,7 @@ const Form = () => (
     <FormControl sx={{ alignItems: "center" }}>
       <TextField label="Nome" placeholder="Inserisci il tuo nome" />
       <TextField
+        label="data di nascita"
         placeholder="Inserisci la tua data di nascita"
         sx={{ minWidth: "169px" }}
         type="date"
