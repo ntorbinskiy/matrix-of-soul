@@ -85,26 +85,16 @@ const Heart: FC<HeartProps> = (props) => (
   </SvgIcon>
 );
 
-const DateInput = () => {
-  return (
-    <TextField placeholder="Inserisci la tua data di nascita" type="date" />
-  );
-};
-
-const NameInput = () => {
-  return (
-    <Box>
-      <TextField label="Nome" placeholder="Inserisci il tuo nome" />
-    </Box>
-  );
-};
-
 const Form = () => (
   <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
     <Heart sx={{ width: "50px", height: "50px", mb: "25px" }} />
     <FormControl sx={{ alignItems: "center" }}>
-      <NameInput />
-      <DateInput />
+      <TextField label="Nome" placeholder="Inserisci il tuo nome" />
+      <TextField
+        placeholder="Inserisci la tua data di nascita"
+        sx={{ minWidth: "169px" }}
+        type="date"
+      />
       <Button
         sx={{
           background:
