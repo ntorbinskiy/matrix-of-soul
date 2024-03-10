@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import { theme } from "../theme";
 
 const styles: SxProps<Theme> = {
-  color: "#74a12e",
+  color: "#c3d4a5",
   fontSize: "30px",
   textAlign: "center",
   [theme.breakpoints.down("sm")]: {
@@ -32,7 +32,7 @@ const Personal = () => {
           },
         }}
       >
-        <Button sx={styles}>
+        <Button sx={styles} variant="contained" color="success">
           Matrice <br />
           personale
         </Button>
