@@ -110,18 +110,28 @@ const widthThreshold = 800;
 
 const Form = () => {
   const { width } = useWindowDimensions();
+  const [name, setName] = useState<string>("");
+  const [date, setDate] = useState<string | Date>("");
+
   return (
     <Box
       sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}
     >
       <Heart sx={{ width: "50px", height: "50px", mb: "25px" }} />
       <FormControl sx={{ alignItems: "center" }}>
-        <TextField label="Nome" placeholder="Inserisci il tuo nome" />
+        <TextField
+          label="Nome"
+          placeholder="Inserisci il tuo nome"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
         <TextField
           label={width > widthThreshold ? "" : "data di nascita"}
           placeholder="Inserisci la tua data di nascita"
-          sx={{ minWidth: "169px" }}
           type="date"
+          value={date}
+          onChange={(event) => setDate(event.target.value)}
+          sx={{ minWidth: "169px" }}
         />
         <Button
           sx={{
@@ -139,6 +149,8 @@ const Form = () => {
             fontSize: "26px",
             letterSpacing: ".025em",
           }}
+          type="submit"
+          //   onSubmit={}
         >
           CALCOLARE
         </Button>

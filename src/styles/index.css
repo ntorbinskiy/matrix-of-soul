@@ -2,8 +2,15 @@
 
 @import "reset.css";
 
+@font-face {
+  font-family: "MAK";
+  src: url("../fonts/MAK.otf") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
-  font-family: "Ubuntu" !important;
+  font-family: "MAK" !important;
 }
 
 body {

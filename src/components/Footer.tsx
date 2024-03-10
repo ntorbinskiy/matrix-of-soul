@@ -2,8 +2,7 @@ import { Box, Link, SxProps, Typography } from "@mui/material";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { Theme } from "@emotion/react";
-
-import { theme } from "../theme";
+import theme from "../theme";
 
 const telegramLink = "https://t.me/julimatrix";
 const instagramLink = "https://www.instagram.com/juli.matrix/";
@@ -62,7 +61,6 @@ const Footer = () => {
           sx={{
             color: "#74a12e",
             fontSize: "40px",
-            fontFamily: "KyivTypeSans-M3 !importantKyivTypeSans",
             [theme.breakpoints.down("sm")]: {
               fontSize: "30px",
             },

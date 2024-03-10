@@ -1,9 +1,8 @@
 import { Box, Button, SxProps, Theme } from "@mui/material";
 import Form from "../components/Form";
 
-import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { theme } from "../theme";
+import theme from "../theme";
 
 const styles: SxProps<Theme> = {
   color: "#c3d4a5",
@@ -17,7 +16,6 @@ const styles: SxProps<Theme> = {
 const Personal = () => {
   return (
     <Box sx={{ minHeight: "100%" }}>
-      <Header />
       <Box
         sx={{
           display: "flex",
@@ -32,11 +30,21 @@ const Personal = () => {
           },
         }}
       >
-        <Button sx={styles} variant="contained" color="success">
+        <Button
+          sx={{
+            ...styles,
+            background: "#86945e",
+            "&:hover": {
+              background: "#49592a",
+            },
+          }}
+          variant="contained"
+          color="success"
+        >
           Matrice <br />
           personale
         </Button>
-        <Button sx={styles}>
+        <Button sx={{ ...styles }}>
           Matrice di <br />
           compatibilità
         </Button>

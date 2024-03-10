@@ -7,7 +7,6 @@ const Header = () => {
         sx={{
           textTransform: "uppercase",
           fontSize: "40px",
-          fontFamily: "KyivTypeSans-M3 !important",
           color: "rgb(95 95 95/1)",
           maxWidth: "1440px",
           margin: "0 auto",

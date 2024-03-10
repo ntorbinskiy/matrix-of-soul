@@ -1,22 +1,22 @@
 import { createTheme } from "@mui/material";
 
-interface CustomColorsPalette {
-  main: {
-    matcha: "#74a12e";
-  };
-}
+// declare module "@mui/material/styles" {
+//   interface Palette {
+//     matcha: Palette["primary"];
+//   }
 
-declare module "@mui/material/styles/createPalette" {
-  interface Palette extends CustomColorsPalette {}
-  interface PaletteOptions extends CustomColorsPalette {}
-}
+//   interface PaletteOptions {
+//     matcha?: PaletteOptions["primary"];
+//   }
+// }
 
-const colors: CustomColorsPalette["main"] = {
-  matcha: "#74a12e",
-};
+// // Update the Button's color options to include a salmon option
+// declare module "@mui/material/Button" {
+//   interface ButtonPropsColorOverrides {
+//     matcha: true;
+//   }
+// }
 
-export const theme = createTheme({
-  palette: {
-    main: colors,
-  },
-});
+const theme = createTheme({});
+
+export default theme;
