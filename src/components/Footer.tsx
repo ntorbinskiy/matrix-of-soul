@@ -5,7 +5,7 @@ import { Theme } from "@emotion/react";
 import theme from "../theme";
 
 const telegramLink = "https://t.me/julimatrix";
-const instagramLink = "https://www.instagram.com/juli.matrix/";
+export const instagramLink = "https://www.instagram.com/juli.matrix/";
 
 const styles: SxProps<Theme> = {
   fontSize: "30px",

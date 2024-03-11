@@ -1,16 +1,15 @@
+import { instagramLink } from "./components/Footer";
+import { useGlobalState } from "./provider";
+
 const Matrix = () => {
+  const { globalDate, globalName } = useGlobalState();
   return (
     <div>
       <section className="resultBlock">
         <div className="cont flex">
           <div className="schemeBlock">
             <div className="matrix-diagram__svg">
-              <img
-                src="../public/matrix.svg"
-                alt="matrix"
-                width="680"
-                height="680"
-              />
+              <img src="/matrix.svg" alt="matrix" width="680" height="680" />
             </div>
 
             <div className="matrix-diagram__circle -size-lg -position-a -purple">
@@ -188,36 +187,36 @@ const Matrix = () => {
             <div className="box_result">
               <div className="items flex">
                 <div className="item">
-                  <div className="name">Дата народження:</div>
+                  <div className="name">Data di nascita:</div>
 
-                  <div className="val">11.06.2007</div>
+                  <div className="val">{globalDate.toLocaleString()}</div>
                 </div>
 
                 <div className="item">
-                  <div className="name">Вік:</div>
+                  <div className="name">Età:</div>
 
-                  <div className="val">16</div>
+                  <div className="val">{17}</div>
                 </div>
 
                 <div className="item">
-                  <div className="name">Ім'я:</div>
+                  <div className="name">Nome:</div>
 
-                  <div className="val">Микита Торбинський</div>
+                  <div className="val">{globalName}</div>
                 </div>
               </div>
             </div>
 
-            <div className="title">Покликання:</div>
+            <div className="title">Chiamando:</div>
 
             <div className="box_result">
               <div className="columns flex">
                 <div className="column">
-                  <div className="column_title">Для себе:</div>
+                  <div className="column_title">Per me:</div>
 
                   <table>
                     <tr>
                       <td>
-                        <b>Небо:</b>
+                        <b>Cielo:</b>
                       </td>
                       <td>
                         <span>14</span>
@@ -229,7 +228,7 @@ const Matrix = () => {
 
                     <tr>
                       <td>
-                        <b>Земля:</b>
+                        <b>Terra:</b>
                       </td>
                       <td>
                         <span>20</span>
@@ -240,7 +239,7 @@ const Matrix = () => {
                 </div>
 
                 <div className="column">
-                  <div className="column_title">Для людей:</div>
+                  <div className="column_title">Per le persone:</div>
 
                   <table>
                     <tr>
@@ -269,7 +268,7 @@ const Matrix = () => {
               </div>
 
               <div className="feature">
-                <div className="name">Загальне:</div>
+                <div className="name">Generale:</div>
 
                 <div className="val">
                   <span>21</span>
@@ -278,7 +277,7 @@ const Matrix = () => {
             </div>
 
             <div className="box_result">
-              <div className="column_title">Програми по чоловічій лінії:</div>
+              <div className="column_title">Programmi per uomini:</div>
 
               <table>
                 <tr>
@@ -298,7 +297,7 @@ const Matrix = () => {
                 </tr>
               </table>
 
-              <div className="column_title">Програми по жіночій лінії:</div>
+              <div className="column_title">Programmi per donne:</div>
 
               <table>
                 <tr>
@@ -319,7 +318,7 @@ const Matrix = () => {
               </table>
 
               <div className="feature">
-                <div className="name">Сила роду:</div>
+                <div className="name">Potere familiare:</div>
 
                 <div className="val">
                   <span>14</span>
@@ -328,8 +327,8 @@ const Matrix = () => {
             </div>
 
             <div className="link_btn">
-              <a href="https://instagram.com/olga_tkachishin" target="_blank">
-                Замовити консультацію
+              <a href={instagramLink} target="_blank">
+                Ordina una consulenza
               </a>
             </div>
           </div>

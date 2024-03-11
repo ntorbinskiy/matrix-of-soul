@@ -1,13 +1,8 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  SvgIcon,
-  SxProps,
-  TextField,
-  Theme,
-} from "@mui/material";
-import { FC, useEffect, useState } from "react";
+import { Box, Button, SvgIcon, SxProps, TextField, Theme } from "@mui/material";
+import { FC, FormEventHandler, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useGlobalState } from "../provider";
 
 interface HeartProps {
   sx: SxProps<Theme>;
@@ -108,21 +103,34 @@ const useWindowDimensions = () => {
 
 const widthThreshold = 800;
 
-const Form = () => {
+const Form: FC = () => {
   const { width } = useWindowDimensions();
   const [name, setName] = useState<string>("");
   const [date, setDate] = useState<string | Date>("");
+  const navigate = useNavigate();
+  const { setData } = useGlobalState();
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    setData({ globalName: name, globalDate: date });
+    navigate("/result");
+  };
 
   return (
     <Box
       sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}
     >
       <Heart sx={{ width: "50px", height: "50px", mb: "25px" }} />
-      <FormControl sx={{ alignItems: "center" }}>
+      <Box
+        component="form"
+        sx={{ alignItems: "center", flexDirection: "column" }}
+        onSubmit={handleSubmit}
+      >
         <TextField
           label="Nome"
           placeholder="Inserisci il tuo nome"
           value={name}
+          required
           onChange={(event) => setName(event.target.value)}
         />
         <TextField
@@ -130,9 +138,11 @@ const Form = () => {
           placeholder="Inserisci la tua data di nascita"
           type="date"
           value={date}
+          required
           onChange={(event) => setDate(event.target.value)}
           sx={{ minWidth: "169px" }}
         />
+
         <Button
           sx={{
             background:
@@ -150,11 +160,10 @@ const Form = () => {
             letterSpacing: ".025em",
           }}
           type="submit"
-          //   onSubmit={}
         >
           CALCOLARE
         </Button>
-      </FormControl>
+      </Box>
     </Box>
   );
 };
