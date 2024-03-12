@@ -27,6 +27,7 @@ export const StateProvider: FC<Props> = (props) => {
     () => ({ ...data, setData }),
     [data, setData]
   );
+
   return (
     <StateContext.Provider value={memoizedData}>
       {props.children}
@@ -34,6 +35,7 @@ export const StateProvider: FC<Props> = (props) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useGlobalState = (): State => {
   const { globalName, globalDate, setData } = useContext(StateContext);
 

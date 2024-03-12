@@ -328,7 +328,7 @@
   font-weight: 700;
 }
 
-.matrix-diagram__number.-position-b8 {
+/* .matrix-diagram__number.-position-b8 {
   top: 3.3%;
   right: 40.2%;
 }
@@ -776,9 +776,8 @@
   backdrop-filter: blur(13px);
   border-radius: 20px;
   margin-bottom: 45px;
-  background: #ffd85c;
-  /*background: #FFED47;*/
-  /*background-color: rgba(191, 145, 0, .3);*/
+  border: 3px solid #86945e;
+  color: #74a12e;
 }
 
 .resultBlock .data .items {
@@ -894,7 +893,7 @@
 
 .resultBlock .data .feature .val span {
   margin: 0;
-}
+} */
 
 .MuiInputBase-root {
   border-radius: 20px;

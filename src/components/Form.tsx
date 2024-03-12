@@ -123,7 +123,7 @@ const Form: FC = () => {
       <Heart sx={{ width: "50px", height: "50px", mb: "25px" }} />
       <Box
         component="form"
-        sx={{ alignItems: "center", flexDirection: "column" }}
+        sx={{ alignItems: "center", flexDirection: "column", display: "flex" }}
         onSubmit={handleSubmit}
       >
         <TextField
