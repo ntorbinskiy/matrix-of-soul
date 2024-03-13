@@ -3,6 +3,7 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { Theme } from "@emotion/react";
 import theme from "../theme";
+import { matchaColor } from "../Matrix/styles";
 
 const telegramLink = "https://t.me/julimatrix";
 export const instagramLink = "https://www.instagram.com/juli.matrix/";
@@ -10,7 +11,7 @@ export const instagramLink = "https://www.instagram.com/juli.matrix/";
 const styles: SxProps<Theme> = {
   fontSize: "30px",
   textDecoration: "none",
-  color: "#74a12e",
+  color: matchaColor,
   display: "flex",
   gap: "12px",
   "& svg": {
@@ -59,7 +60,7 @@ const Footer = () => {
         </Link>
         <Typography
           sx={{
-            color: "#74a12e",
+            color: matchaColor,
             fontSize: "40px",
             [theme.breakpoints.down("sm")]: {
               fontSize: "30px",

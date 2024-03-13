@@ -3,6 +3,7 @@ import { FC, FormEventHandler, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useGlobalState } from "../provider";
+import { linkButton, matchaColor } from "../Matrix/styles";
 
 interface HeartProps {
   sx: SxProps<Theme>;
@@ -21,7 +22,7 @@ const Heart: FC<HeartProps> = (props) => (
         fillRule="evenodd"
         clipRule="evenodd"
         d="M23.7821 0.113358C14.1845 0.990789 5.6577 7.15614 1.99692 15.8649C-1.71312 24.6907 -0.177849 34.8265 5.97219 42.1085C6.4237 42.6432 16.441 52.5126 28.2327 64.0403L45.9327 81.3442C48.0488 83.413 51.3615 83.5061 53.566 81.5318C64.6074 71.6436 94.8684 44.3888 95.6053 43.6473C103.256 35.9486 105.178 24.2884 100.395 14.5936C98.9706 11.707 97.306 9.45373 94.957 7.2328C87.8717 0.533742 77.6794 -1.71608 68.2792 1.34396C60.7506 3.79473 54.5435 9.75718 51.8883 17.0885L51.4938 18.1778L51.0369 16.9497C49.0804 11.6908 45.4781 7.26321 40.6072 4.1311C35.7836 1.02912 29.6878 -0.42646 23.7821 0.113358Z"
-        fill="#74a12e"
+        fill={matchaColor}
       />
       <path
         fillRule="evenodd"
@@ -106,7 +107,7 @@ const widthThreshold = 800;
 const Form: FC = () => {
   const { width } = useWindowDimensions();
   const [name, setName] = useState<string>("");
-  const [date, setDate] = useState<string | Date>("");
+  const [date, setDate] = useState<string>("");
   const navigate = useNavigate();
   const { setData } = useGlobalState();
 
@@ -145,19 +146,8 @@ const Form: FC = () => {
 
         <Button
           sx={{
-            background:
-              "linear-gradient(101deg,#6e8641,#c3d4a5),linear-gradient(101deg,#fff,hsla(0,0%,100%,.3))",
-            color: "white",
-            border: "3px solid transparent",
-            backgroundOrigin: "border-box",
-            backgroundClip: "content-box,border-box",
-            WebkitBackdropFilter: "blur(47.275px)",
-            backdropFilter: "blur(47.275px)",
-            borderRadius: "15px",
-            width: "310px",
-            height: "62px",
+            ...linkButton,
             fontSize: "26px",
-            letterSpacing: ".025em",
           }}
           type="submit"
         >

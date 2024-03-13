@@ -18,7 +18,7 @@ const styles: SxProps<Theme> = {
 
 export interface State {
   globalName: string;
-  globalDate: Date | string;
+  globalDate: string;
   setData: React.Dispatch<React.SetStateAction<Omit<State, "setData">>>;
 }
 

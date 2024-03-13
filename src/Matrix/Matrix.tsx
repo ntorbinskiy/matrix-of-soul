@@ -1,166 +1,54 @@
-import { Box, IconButton, SxProps } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
-import { useGlobalState } from "./provider";
-import { Theme } from "@emotion/react";
+import { useGlobalState } from "../provider";
+
 import { Link } from "react-router-dom";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 
-const boxStyles: SxProps<Theme> = {
-  display: "flex",
-  height: "240px",
-  width: "360px",
-  flexWrap: "wrap",
-  border: "3px solid #74a12e",
-  borderRadius: "22px",
-  justifyContent: "center",
-  alignItems: "center",
-  gap: "40px",
-};
-
-const textStyles: SxProps<Theme> = {
-  fontSize: "22px",
-  color: "#74a12e",
-  fontWeight: 600,
-};
-
-const spanStyles: SxProps<Theme> = {
-  display: "flex",
-  flexDirection: "column",
-  gap: "20px",
-};
-
-const blackText: SxProps<Theme> = {
-  fontSize: "19px",
-};
-
-const calculateAge = (date: Date) => {
-  // Calculate the difference in milliseconds between the current date and the provided date of birth
-  const diff_ms = Date.now() - date.getTime();
-  // Create a new Date object representing the difference in milliseconds and store it in the variable age_dt (age Date object)
-  const age_dt = new Date(diff_ms);
-
-  // Calculate the absolute value of the difference in years between the age Date object and the year 1970 (UNIX epoch)
-  return Math.abs(age_dt.getUTCFullYear() - 1970);
-};
+import { linkButton, matchaColor } from "./styles";
+import Footer from "../components/Footer";
+import MatrixTable from "../components/MatrixTable";
+import theme from "../theme";
 
 const Matrix = () => {
   const { globalDate, globalName } = useGlobalState();
 
-  const date = new Date(globalDate);
-
   return (
-    <Box>
-      <Link to="/">
-        <IconButton aria-label="back">
-          <ArrowBackIosNewRoundedIcon />
-        </IconButton>
-        Inserisci un'altra data
+    <>
+      <Link to="/" style={{ color: matchaColor }}>
+        <Button sx={linkButton} startIcon={<ArrowBackIosNewRoundedIcon />}>
+          Inserisci un'altra data
+        </Button>
       </Link>
       <Box
         sx={{
+          "* > *": {
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            [theme.breakpoints.down("sm")]: {
+              gap: "0",
+            },
+          },
           display: "flex",
-          justifyContent: "center",
-          gap: "20px",
-          pt: "50px",
+          flexWrap: "wrap",
         }}
       >
-        <Box sx={{ ...boxStyles }}>
-          <Box sx={spanStyles}>
-            <Box component="span" sx={textStyles}>
-              Data di nascita:
-            </Box>
-            <Box component="span" sx={blackText}>
-              {globalDate.toString()}
-            </Box>
-          </Box>
-          <Box sx={spanStyles}>
-            <Box component="span" sx={textStyles}>
-              Nome:
-            </Box>
-            <Box component="span" sx={blackText}>
-              {globalName}
-            </Box>
-          </Box>
-          <Box
-            sx={{
-              ...spanStyles,
-              flexDirection: "row",
-              gap: "5px",
-              alignItems: "center",
-            }}
-          >
-            <Box component="span" sx={textStyles}>
-              Età:
-            </Box>
-            <Box component="span" sx={blackText}>
-              {calculateAge(date)}
-            </Box>
-          </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "20px",
+            pt: "50px",
+          }}
+        >
+          <MatrixTable globalDate={globalDate} globalName={globalName} />
         </Box>
-        <Box sx={{ ...boxStyles }}>
-          <Box sx={{ ...spanStyles, flexDirection: "row" }}>
-            <Box sx={spanStyles}>
-              <Box component="span" sx={textStyles}>
-                Per me:
-              </Box>
-              <Box>
-                <Box sx={{ display: "flex" }}>
-                  <Box component="span" sx={textStyles}>
-                    Cielo:
-                  </Box>
-                  <Box component="span" sx={textStyles}>
-                    Terra:
-                  </Box>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    ...blackText,
-                  }}
-                >
-                  <Box>
-                    <Box>8</Box>
-                    <Box>19</Box>
-                  </Box>
-                  <Box>6</Box>
-                </Box>
-              </Box>
-            </Box>
-            <Box sx={spanStyles}>
-              <Box component="span" sx={textStyles}>
-                Per le persone:
-              </Box>
-              <Box sx={{ display: "flex" }}>
-                <Box sx={{ display: "flex" }}>
-                  <Box component="span" sx={textStyles}>
-                    Uomo:
-                  </Box>
-                  <Box component="span" sx={textStyles}>
-                    Donna:
-                  </Box>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    ...blackText,
-                  }}
-                >
-                  <Box>
-                    <Box>8</Box>
-                    <Box>19</Box>
-                  </Box>
-                  <Box>6</Box>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-        <Box sx={{ ...boxStyles }}></Box>
+        <img src="/matrix.png" alt="matrix" width={696} height={700} />
+
+        <Footer />
       </Box>
-      <img src="/matrix.png" alt="matrix" width={696} height={700} />
-    </Box>
+    </>
     // <div>
     //   <section className="resultBlock">
     //     <div className="cont flex">

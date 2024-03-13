@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./styles/index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Matrix from "./Matrix.tsx";
+import Matrix from "./Matrix/Matrix.tsx";
 import { StateProvider } from "./provider/index.tsx";
 
 const router = createBrowserRouter([
