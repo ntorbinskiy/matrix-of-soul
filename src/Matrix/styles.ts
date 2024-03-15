@@ -6,7 +6,6 @@ export const matchaColor = "#74a12e";
 export const boxStyles: SxProps<Theme> = {
   display: "flex",
   height: "240px",
-  width: "360px",
   flexWrap: "wrap",
   border: "3px solid #74a12e",
   borderRadius: "22px",

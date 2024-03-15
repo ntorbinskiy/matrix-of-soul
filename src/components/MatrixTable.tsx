@@ -10,6 +10,12 @@ import {
   textStyles,
 } from "../Matrix/styles";
 import theme from "../theme";
+import { calculateMatrix } from "../utils/calculate-matrix";
+import {
+  ISecondTable,
+  SecondTableArgs,
+  calculateSecondTable,
+} from "../utils/calculate-tables";
 
 const calculateAge = (globalDate: string): number => {
   if (globalDate.length === 0) {
@@ -42,12 +48,12 @@ const ParentStylesProvider: FC<ParentStylesProviderProps> = (props) => (
     sx={{
       ...boxStyles,
       [theme.breakpoints.down("sm")]: {
-        width: "80%",
         height: "110px",
         gap: "10px",
+        width: "350px",
       },
-      [theme.breakpoints.between("md", "lg")]: {
-        width: "287px",
+      [theme.breakpoints.between("sm", "md")]: {
+        width: "600px",
       },
     }}
   >
@@ -110,6 +116,9 @@ interface SecondTableBlockProps {
   label: "Per me:" | "Per le persone:";
   secondElement: "Cielo:" | "Uomo:";
   thirdElement: "Terra:" | "Donna:";
+  circle1: number;
+  circle2: number;
+  circle3: number;
 }
 
 const SecondTableBlock: FC<SecondTableBlockProps> = (props) => (
@@ -130,16 +139,23 @@ const SecondTableBlock: FC<SecondTableBlockProps> = (props) => (
       </Box>
       <Box sx={setCircledNumbersStyles(" & > div > div, & > div + div")}>
         <Box sx={{ ...dFlexColumn, gap: "5px" }}>
-          <Box>8</Box>
-          <Box>19</Box>
+          <Box>{props.circle1}</Box>
+          <Box>{props.circle2}</Box>
         </Box>
-        <Box>6</Box>
+        <Box>{props.circle3}</Box>
       </Box>
     </Box>
   </Box>
 );
 
-const SecondTable = () => {
+interface SecondTableProps {
+  secondTableValues: ISecondTable;
+}
+
+const SecondTable: FC<SecondTableProps> = ({ secondTableValues }) => {
+  const { earth, sky, skyPlusEarth, male, female, malePlusFemale, wholeValue } =
+    secondTableValues;
+
   return (
     <ParentStylesProvider>
       <Box
@@ -156,12 +172,22 @@ const SecondTable = () => {
           label="Per me:"
           secondElement="Cielo:"
           thirdElement="Terra:"
+          circle1={sky}
+          circle2={earth}
+          circle3={skyPlusEarth}
         />
         <SecondTableBlock
           label="Per le persone:"
           secondElement="Uomo:"
           thirdElement="Donna:"
+          circle1={male}
+          circle2={female}
+          circle3={malePlusFemale}
         />
+        <Box>
+          <GreenText>Generale:</GreenText>
+          <Box sx={setCircledNumbersStyles("&")}>{wholeValue}</Box>
+        </Box>
       </Box>
     </ParentStylesProvider>
   );
@@ -217,6 +243,21 @@ interface MatrixTableProps {
 }
 
 export const MatrixTable: FC<MatrixTableProps> = (props) => {
+  const { a1, b1, c1, d1, e1, f1, g1, h1 } = calculateMatrix(props.globalDate);
+
+  const secondTableArgs: SecondTableArgs = {
+    a1,
+    b1,
+    c1,
+    d1,
+    e1,
+    f1,
+    g1,
+    h1,
+  };
+
+  const secondTable = calculateSecondTable(secondTableArgs);
+
   return (
     <Box
       sx={{
@@ -226,7 +267,7 @@ export const MatrixTable: FC<MatrixTableProps> = (props) => {
       }}
     >
       <FirstTable globalDate={props.globalDate} globalName={props.globalName} />
-      <SecondTable />
+      <SecondTable secondTableValues={secondTable} />
       <ThirdTable />
     </Box>
   );

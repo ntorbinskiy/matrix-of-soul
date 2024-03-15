@@ -9,46 +9,84 @@ import { linkButton, matchaColor } from "./styles";
 import Footer from "../components/Footer";
 import MatrixTable from "../components/MatrixTable";
 import theme from "../theme";
+import "./styles.css";
 
 const Matrix = () => {
   const { globalDate, globalName } = useGlobalState();
 
   return (
-    <>
-      <Link to="/" style={{ color: matchaColor }}>
-        <Button sx={linkButton} startIcon={<ArrowBackIosNewRoundedIcon />}>
-          Inserisci un'altra data
-        </Button>
-      </Link>
+    <Box
+      sx={{
+        display: "flex",
+        position: "relative",
+        alignItems: "center",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
       <Box
         sx={{
-          "* > *": {
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            [theme.breakpoints.down("sm")]: {
-              gap: "0",
-            },
-          },
           display: "flex",
-          flexWrap: "wrap",
+          pb: "150px",
+          alignItems: "center",
+          flexDirection: "column",
         }}
       >
+        <Link to="/" style={{ color: matchaColor }}>
+          <Button sx={linkButton} startIcon={<ArrowBackIosNewRoundedIcon />}>
+            Inserisci un'altra data
+          </Button>
+        </Link>
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
-            gap: "20px",
-            pt: "50px",
+            alignItems: "center",
+            flexDirection: "column",
+            [theme.breakpoints.up("md")]: {
+              order: 3,
+            },
+            position: "relative",
           }}
         >
-          <MatrixTable globalDate={globalDate} globalName={globalName} />
+          <Box sx={{ maxWidth: "700px", position: "relative" }}>
+            <img
+              src="/matrix.png"
+              alt="matrix"
+              width={696}
+              height={700}
+              className="matrix-img"
+            />
+          </Box>
         </Box>
-        <img src="/matrix.png" alt="matrix" width={696} height={700} />
-
-        <Footer />
+        <Box
+          sx={{
+            "* > *": {
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              [theme.breakpoints.down("sm")]: {
+                gap: "0",
+              },
+            },
+            display: "flex",
+            flexWrap: "wrap",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "20px",
+              pt: "50px",
+            }}
+          >
+            <MatrixTable globalDate={globalDate} globalName={globalName} />
+          </Box>
+        </Box>
       </Box>
-    </>
+      <Footer />
+    </Box>
     // <div>
     //   <section className="resultBlock">
     //     <div className="cont flex">

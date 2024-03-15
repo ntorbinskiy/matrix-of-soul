@@ -1,11 +1,4 @@
-import {
-  FC,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { FC, createContext, useContext, useMemo, useState } from "react";
 import { State } from "../App";
 
 export interface Props {
@@ -38,10 +31,6 @@ export const StateProvider: FC<Props> = (props) => {
 // eslint-disable-next-line react-refresh/only-export-components
 export const useGlobalState = (): State => {
   const { globalName, globalDate, setData } = useContext(StateContext);
-
-  useEffect(() => {
-    console.log({ globalDate, globalName });
-  }, [globalDate, globalName]);
 
   return { globalName, globalDate, setData };
 };
