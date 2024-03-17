@@ -25,41 +25,50 @@ export interface State {
 const App: FC = () => {
   return (
     <>
-      <Box sx={{ minHeight: "100%" }}>
-        <Box
-          sx={{
-            display: "flex",
-            columnGap: "70px",
-            justifyContent: "center",
-            mt: "200px",
-            mb: "200px",
-            [theme.breakpoints.down("sm")]: {
-              flexDirection: "column",
-              mb: "65px",
-              mt: 0,
-            },
-          }}
-        >
-          <Button
+      <Box
+        sx={{
+          minHeight: "100vh",
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Box sx={{ pb: "150px" }}>
+          <Box
             sx={{
-              ...styles,
-              background: "#86945e",
-              "&:hover": {
-                background: "#49592a",
+              display: "flex",
+              columnGap: "70px",
+              justifyContent: "center",
+              mt: "200px",
+              mb: "200px",
+              [theme.breakpoints.down("sm")]: {
+                flexDirection: "column",
+                mb: "65px",
+                mt: 0,
               },
             }}
-            variant="contained"
-            color="success"
           >
-            Matrice <br />
-            personale
-          </Button>
-          <Button sx={{ ...styles }}>
-            Matrice di <br />
-            compatibilità
-          </Button>
+            <Button
+              sx={{
+                ...styles,
+                background: "#86945e",
+                "&:hover": {
+                  background: "#49592a",
+                },
+              }}
+              variant="contained"
+              color="success"
+            >
+              Matrice <br />
+              personale
+            </Button>
+            <Button sx={{ ...styles }}>
+              Matrice di <br />
+              compatibilità
+            </Button>
+          </Box>
+          <Form />
         </Box>
-        <Form />
         <Footer />
       </Box>
     </>

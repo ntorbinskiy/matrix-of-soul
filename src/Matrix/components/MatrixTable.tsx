@@ -8,14 +8,16 @@ import {
   dFlexColumn,
   setCircledNumbersStyles,
   textStyles,
-} from "../Matrix/styles";
-import theme from "../theme";
-import { calculateMatrix } from "../utils/calculate-matrix";
+} from "../styles";
+import theme from "../../theme";
+import { calculateMatrix } from "../../utils/calculate-matrix";
 import {
-  ISecondTable,
   SecondTableArgs,
+  ThirdTableArgs,
   calculateSecondTable,
-} from "../utils/calculate-tables";
+  calculateThirdTable,
+} from "../../utils/calculate-tables";
+import { useGlobalState } from "../../provider";
 
 const calculateAge = (globalDate: string): number => {
   if (globalDate.length === 0) {
@@ -30,11 +32,6 @@ const calculateAge = (globalDate: string): number => {
 
   return Math.abs(age_dt.getUTCFullYear() - 1970);
 };
-
-interface MatrixTableProps {
-  globalName: string;
-  globalDate: string;
-}
 
 interface GreenTextProps {
   children: ReactNode;
@@ -80,19 +77,21 @@ const GreenText: FC<GreenTextProps> = ({ children }) => {
   );
 };
 
-const FirstTable: FC<MatrixTableProps> = (props) => {
+const FirstTable: FC = () => {
+  const { globalDate, globalName } = useGlobalState();
+
   return (
     <ParentStylesProvider>
       <Box sx={dFlexColumn}>
         <GreenText>Data di nascita:</GreenText>
         <Box component="span" sx={blackText}>
-          {props.globalDate.toString()}
+          {globalDate.toString()}
         </Box>
       </Box>
       <Box sx={dFlexColumn}>
         <GreenText>Nome:</GreenText>
         <Box component="span" sx={blackText}>
-          {props.globalName}
+          {globalName}
         </Box>
       </Box>
       <Box
@@ -105,7 +104,7 @@ const FirstTable: FC<MatrixTableProps> = (props) => {
       >
         <GreenText> Età:</GreenText>
         <Box component="span" sx={blackText}>
-          {calculateAge(props.globalDate)}
+          {calculateAge(globalDate)}
         </Box>
       </Box>
     </ParentStylesProvider>
@@ -113,7 +112,7 @@ const FirstTable: FC<MatrixTableProps> = (props) => {
 };
 
 interface SecondTableBlockProps {
-  label: "Per me:" | "Per le persone:";
+  label: "Personale:" | "Sociale:";
   secondElement: "Cielo:" | "Uomo:";
   thirdElement: "Terra:" | "Donna:";
   circle1: number;
@@ -148,13 +147,24 @@ const SecondTableBlock: FC<SecondTableBlockProps> = (props) => (
   </Box>
 );
 
-interface SecondTableProps {
-  secondTableValues: ISecondTable;
-}
+const SecondTable: FC = () => {
+  const { globalDate } = useGlobalState();
 
-const SecondTable: FC<SecondTableProps> = ({ secondTableValues }) => {
+  const { a1, b1, c1, d1, e1, f1, g1, h1 } = calculateMatrix(globalDate);
+
+  const secondTableArgs: SecondTableArgs = {
+    a1,
+    b1,
+    c1,
+    d1,
+    e1,
+    f1,
+    g1,
+    h1,
+  };
+
   const { earth, sky, skyPlusEarth, male, female, malePlusFemale, wholeValue } =
-    secondTableValues;
+    calculateSecondTable(secondTableArgs);
 
   return (
     <ParentStylesProvider>
@@ -169,7 +179,7 @@ const SecondTable: FC<SecondTableProps> = ({ secondTableValues }) => {
         }}
       >
         <SecondTableBlock
-          label="Per me:"
+          label="Personale:"
           secondElement="Cielo:"
           thirdElement="Terra:"
           circle1={sky}
@@ -177,7 +187,7 @@ const SecondTable: FC<SecondTableProps> = ({ secondTableValues }) => {
           circle3={skyPlusEarth}
         />
         <SecondTableBlock
-          label="Per le persone:"
+          label="Sociale:"
           secondElement="Uomo:"
           thirdElement="Donna:"
           circle1={male}
@@ -195,6 +205,9 @@ const SecondTable: FC<SecondTableProps> = ({ secondTableValues }) => {
 
 interface ThirdTableBlockProps {
   label: ReactNode;
+  circle1: number;
+  circle2: number;
+  circle3: number;
 }
 
 const ThirdTableBlock: FC<ThirdTableBlockProps> = (props) => {
@@ -202,15 +215,29 @@ const ThirdTableBlock: FC<ThirdTableBlockProps> = (props) => {
     <Box sx={dFlexColumn}>
       <GreenText>{props.label}</GreenText>
       <Box sx={setCircledNumbersStyles("& > div")}>
-        <Box>8</Box>
-        <Box>19</Box>
-        <Box>6</Box>
+        <Box>{props.circle1}</Box>
+        <Box>{props.circle2}</Box>
+        <Box>{props.circle3}</Box>
       </Box>
     </Box>
   );
 };
 
 const ThirdTable = () => {
+  const { globalDate } = useGlobalState();
+
+  const { e1, f1, g1, h1 } = calculateMatrix(globalDate);
+
+  const thirdTableArgs: ThirdTableArgs = {
+    e1,
+    f1,
+    g1,
+    h1,
+  };
+
+  const { female1, female2, female3, male1, male2, male3, malePlusFemale } =
+    calculateThirdTable(thirdTableArgs);
+
   return (
     <ParentStylesProvider>
       <ThirdTableBlock
@@ -220,6 +247,9 @@ const ThirdTable = () => {
             maschile:
           </>
         }
+        circle1={male1}
+        circle2={male2}
+        circle3={male3}
       />
       <ThirdTableBlock
         label={
@@ -228,36 +258,19 @@ const ThirdTable = () => {
             femminile:
           </>
         }
+        circle1={female1}
+        circle2={female2}
+        circle3={female3}
       />
       <Box>
         <GreenText>Potere familiare:</GreenText>
-        <Box sx={circleItemStyles}>7</Box>
+        <Box sx={circleItemStyles}>{malePlusFemale}</Box>
       </Box>
     </ParentStylesProvider>
   );
 };
 
-interface MatrixTableProps {
-  globalName: string;
-  globalDate: string;
-}
-
-export const MatrixTable: FC<MatrixTableProps> = (props) => {
-  const { a1, b1, c1, d1, e1, f1, g1, h1 } = calculateMatrix(props.globalDate);
-
-  const secondTableArgs: SecondTableArgs = {
-    a1,
-    b1,
-    c1,
-    d1,
-    e1,
-    f1,
-    g1,
-    h1,
-  };
-
-  const secondTable = calculateSecondTable(secondTableArgs);
-
+export const MatrixTable: FC = () => {
   return (
     <Box
       sx={{
@@ -266,8 +279,8 @@ export const MatrixTable: FC<MatrixTableProps> = (props) => {
         },
       }}
     >
-      <FirstTable globalDate={props.globalDate} globalName={props.globalName} />
-      <SecondTable secondTableValues={secondTable} />
+      <FirstTable />
+      <SecondTable />
       <ThirdTable />
     </Box>
   );

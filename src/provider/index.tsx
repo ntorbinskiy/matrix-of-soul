@@ -6,8 +6,8 @@ export interface Props {
 }
 
 const initialState: State = {
-  globalName: "",
-  globalDate: "",
+  globalName: "Test user",
+  globalDate: "11/11/1111",
   setData: () => {},
 };
 

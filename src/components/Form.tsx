@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useGlobalState } from "../provider";
 import { linkButton, matchaColor } from "../Matrix/styles";
+import InputMask from "react-input-mask";
 
 interface HeartProps {
   sx: SxProps<Theme>;
@@ -88,7 +89,8 @@ const getWindowDimensions = () => {
   };
 };
 
-const useWindowDimensions = () => {
+// eslint-disable-next-line react-refresh/only-export-components
+export const useWindowDimensions = () => {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
@@ -102,12 +104,10 @@ const useWindowDimensions = () => {
   return windowDimensions;
 };
 
-const widthThreshold = 800;
-
 const Form: FC = () => {
-  const { width } = useWindowDimensions();
   const [name, setName] = useState<string>("");
   const [date, setDate] = useState<string>("");
+
   const navigate = useNavigate();
   const { setData } = useGlobalState();
 
@@ -134,15 +134,15 @@ const Form: FC = () => {
           required
           onChange={(event) => setName(event.target.value)}
         />
-        <TextField
-          label={width > widthThreshold ? "" : "data di nascita"}
-          placeholder="Inserisci la tua data di nascita"
-          type="date"
+        <InputMask
+          mask="99/99/9999"
+          onChange={(event) => setDate(event.target.value)}
           value={date}
           required
-          onChange={(event) => setDate(event.target.value)}
-          sx={{ minWidth: "169px" }}
-        />
+          placeholder="Inserisci la tua data di nascita"
+        >
+          <TextField label={"data di nascita"} sx={{ minWidth: "169px" }} />
+        </InputMask>
 
         <Button
           sx={{

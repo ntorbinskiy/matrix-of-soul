@@ -11,7 +11,13 @@ export const calculateNumber = (number: number): number => {
     const thirdNumber = Math.floor((number / 100) % 10);
     const forthNumber = number % 10;
 
-    return firstNumber + secondNumber + thirdNumber + forthNumber;
+    const result = firstNumber + secondNumber + thirdNumber + forthNumber;
+
+    if (result > 22) {
+      return Math.floor(result / 10) + Math.floor(result % 10);
+    }
+
+    return result;
   }
 
   const secondNumber = Math.floor(number % 10);
@@ -43,9 +49,6 @@ interface RowD {
 
 interface RowK {
   k: number;
-  k1: number;
-  k2: number;
-  k3: number;
 }
 
 interface CirclesNAndO {
@@ -77,7 +80,7 @@ interface RowH {
   h3: number;
 }
 
-interface Matrix
+export interface Matrix
   extends RowA,
     RowB,
     RowC,
@@ -92,6 +95,7 @@ interface Matrix
   b1: number;
   c1: number;
   d1: number;
+  centerNumber: number;
 }
 
 const calculateRowA = (a1: number, centerNumber: number): RowA => {
@@ -124,19 +128,10 @@ const calculateRowD = (d1: number, centerNumber: number): RowD => {
   return { d2, d3 };
 };
 
-const calculateRowK = (
-  c1: number,
-  d1: number,
-  c3: number,
-  d3: number,
-  centerNumber: number
-): RowK => {
+const calculateRowK = (c3: number, d3: number): RowK => {
   const k = calculateNumber(c3 + d3);
-  const k1 = calculateNumber(c1 + d1);
-  const k3 = calculateNumber(k1 + centerNumber);
-  const k2 = calculateNumber(k1 + k3);
 
-  return { k, k1, k2, k3 };
+  return { k };
 };
 
 const calculateNAndO = (k: number, c3: number, d3: number): CirclesNAndO => {
@@ -179,7 +174,11 @@ const calculateRowH = (d1: number, a1: number, centerNumber: number): RowH => {
 };
 
 export const calculateMatrix = (globalDate: string): Matrix => {
-  const date = new Date(globalDate);
+  const dateArray = globalDate.split("/");
+
+  const newDate = `${dateArray[2]}/${dateArray[1]}/${dateArray[0]}`;
+
+  const date = new Date(newDate);
 
   const dayOfBirth = date.getDate();
   const monthOfBirth = date.getMonth() + 1;
@@ -199,7 +198,7 @@ export const calculateMatrix = (globalDate: string): Matrix => {
   const { f1, f2, f3 } = calculateRowF(c1, b1, centerNumber);
   const { g1, g2, g3 } = calculateRowG(c1, d1, centerNumber);
   const { h1, h2, h3 } = calculateRowH(d1, a1, centerNumber);
-  const { k, k1, k2, k3 } = calculateRowK(c1, d1, c3, d3, centerNumber);
+  const { k } = calculateRowK(c3, d3);
   const { n, o } = calculateNAndO(k, c3, d3);
 
   return {
@@ -230,10 +229,8 @@ export const calculateMatrix = (globalDate: string): Matrix => {
     h2,
     h3,
     k,
-    k1,
-    k2,
-    k3,
     n,
     o,
+    centerNumber,
   };
 };
