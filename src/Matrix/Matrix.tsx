@@ -34,7 +34,8 @@ const Matrix = () => {
           flexWrap: "wrap",
           maxWidth: "1440px",
           justifyContent: "center",
-          [theme.breakpoints.between("xs", "md")]: {
+          [theme.breakpoints.down("lg")]: {
+            flexDirection: "column",
             gap: "20px",
           },
         }}

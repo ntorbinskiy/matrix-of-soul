@@ -10,7 +10,7 @@ import {
   textStyles,
 } from "../styles";
 import theme from "../../theme";
-import { calculateMatrix } from "../../utils/calculate-matrix";
+import { calculateAge, calculateMatrix } from "../../utils/calculate-matrix";
 import {
   SecondTableArgs,
   ThirdTableArgs,
@@ -18,20 +18,6 @@ import {
   calculateThirdTable,
 } from "../../utils/calculate-tables";
 import { useGlobalState } from "../../provider";
-
-const calculateAge = (globalDate: string): number => {
-  if (globalDate.length === 0) {
-    return 0;
-  }
-
-  const date = new Date(globalDate);
-
-  const diff_ms = Date.now() - date.getTime();
-
-  const age_dt = new Date(diff_ms);
-
-  return Math.abs(age_dt.getUTCFullYear() - 1970);
-};
 
 interface GreenTextProps {
   children: ReactNode;
@@ -100,6 +86,9 @@ const FirstTable: FC = () => {
           flexDirection: "row",
           gap: "5px",
           alignItems: "center",
+          [theme.breakpoints.down("md")]: {
+            flexDirection: "column",
+          },
         }}
       >
         <GreenText> Età:</GreenText>

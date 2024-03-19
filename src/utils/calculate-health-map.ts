@@ -5,7 +5,7 @@ type HealthMapItemName =
   | "Ajna"
   | "Vishudha"
   | "Anahata"
-  | "Manipur"
+  | "Manipura"
   | "Swadhisthana"
   | "Muladhara"
   | "Generale:";
@@ -94,7 +94,7 @@ export const calculateHealthMap = ({
   },
   {
     color: "rgb(248, 233, 103)",
-    name: "Manipur",
+    name: "Manipura",
     subName: "(Energia vitale cosmica)",
     physics: centerNumber,
     energy: centerNumber,

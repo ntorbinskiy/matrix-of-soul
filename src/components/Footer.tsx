@@ -74,4 +74,6 @@ const Footer = () => {
   );
 };
 
+// TODO: Add hover effect on links
+
 export default Footer;

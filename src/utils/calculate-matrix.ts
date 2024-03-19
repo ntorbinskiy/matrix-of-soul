@@ -173,12 +173,31 @@ const calculateRowH = (d1: number, a1: number, centerNumber: number): RowH => {
   return { h1, h2, h3 };
 };
 
+export const parseDate = (date: string): Date => {
+  const dateArray = date.split("/");
+  const day = Number(dateArray[0]);
+  const month = Number(dateArray[1]) - 1;
+  const year = Number(dateArray[2]);
+
+  return new Date(year, month, day);
+};
+
+export const calculateAge = (globalDate: string): number => {
+  if (globalDate.length === 0) {
+    return 0;
+  }
+
+  const date = parseDate(globalDate);
+
+  const diff_ms = Date.now() - date.getTime();
+
+  const age_dt = new Date(diff_ms);
+
+  return Math.abs(age_dt.getUTCFullYear() - 1970);
+};
+
 export const calculateMatrix = (globalDate: string): Matrix => {
-  const dateArray = globalDate.split("/");
-
-  const newDate = `${dateArray[2]}/${dateArray[1]}/${dateArray[0]}`;
-
-  const date = new Date(newDate);
+  const date = parseDate(globalDate);
 
   const dayOfBirth = date.getDate();
   const monthOfBirth = date.getMonth() + 1;
