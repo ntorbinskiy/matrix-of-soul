@@ -3,8 +3,11 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./styles/index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Matrix from "./Matrix/Matrix.tsx";
+
 import { StateProvider } from "./provider/index.tsx";
+import { ThemeProvider } from "@emotion/react";
+import theme from "./theme.ts";
+import PersonalMatrix from "./Matrix/personal/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -13,14 +16,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/result",
-    element: <Matrix />,
+    element: <PersonalMatrix />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <StateProvider>
-      <RouterProvider router={router} />
-    </StateProvider>
+    <ThemeProvider theme={theme}>
+      <StateProvider>
+        <RouterProvider router={router} />
+      </StateProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );

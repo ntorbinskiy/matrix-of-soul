@@ -2,15 +2,17 @@ import { Box, Button, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 
-import { linkButton, matchaColor as matchColor } from "./styles";
-import Footer, { instagramLink } from "../components/Footer";
+import { matchaColor as matchColor } from "./styles";
+import Footer from "../../components/Footer";
 import MatrixTable from "./components/MatrixTable";
-import theme from "../theme";
+import theme from "../../theme";
 import "./styles.css";
 import MatrixImage from "./components/MatrixImage";
 import MatrixHealthMap from "./components/MatrixHealthMap";
 
-const Matrix = () => {
+const juliSiteLink = "https://mssg.me/juli.matrix/servizi";
+
+const PersonalMatrix = () => {
   return (
     <Box
       sx={{
@@ -21,8 +23,12 @@ const Matrix = () => {
         minHeight: "100vh",
       }}
     >
-      <RouterLink to="/" style={{ color: matchColor, textDecoration: "none" }}>
-        <Button sx={linkButton} startIcon={<ArrowBackIosNewRoundedIcon />}>
+      <RouterLink to="/" style={{ color: matchColor }}>
+        <Button
+          startIcon={<ArrowBackIosNewRoundedIcon />}
+          variant="gradient"
+          sx={{ fontSize: "1.2rem" }}
+        >
           Inserisci un'altra data
         </Button>
       </RouterLink>
@@ -68,11 +74,12 @@ const Matrix = () => {
             <MatrixTable />
           </Box>
         </Box>
-        <Link
-          href={instagramLink}
-          style={{ textDecoration: "none", order: 4, marginTop: "30px" }}
-        >
-          <Button sx={linkButton} startIcon={<ArrowBackIosNewRoundedIcon />}>
+        <Link href={juliSiteLink} style={{ order: 4, marginTop: "30px" }}>
+          <Button
+            startIcon={<ArrowBackIosNewRoundedIcon />}
+            variant="gradient"
+            sx={{ fontSize: "1.1rem" }}
+          >
             Ordina una consulenza
           </Button>
         </Link>
@@ -82,4 +89,4 @@ const Matrix = () => {
   );
 };
 
-export default Matrix;
+export default PersonalMatrix;

@@ -1,10 +1,10 @@
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 
-import theme from "../../theme";
+import theme from "../../../theme";
 
 import { FC, useEffect, useState } from "react";
-import { useGlobalState } from "../../provider";
-import { calculateMatrix } from "../../utils/calculate-matrix";
+import { useGlobalState } from "../../../provider";
+import { calculateMatrix } from "../../../utils/calculate-matrix";
 
 type NumberBackground =
   | "rgb(138 70 163)"
@@ -131,7 +131,7 @@ const Number: FC<NumberProps> = ({ state }) => {
 };
 
 const NumberList: FC = () => {
-  const { globalDate } = useGlobalState();
+  const { personalDate } = useGlobalState();
 
   const {
     a1,
@@ -164,7 +164,7 @@ const NumberList: FC = () => {
     n,
     o,
     centerNumber,
-  } = calculateMatrix(globalDate);
+  } = calculateMatrix(personalDate);
 
   const numbersStateArray: NumberState[] = [
     {
@@ -352,8 +352,6 @@ const NumberList: FC = () => {
     </>
   );
 };
-
-// TODO: change image to italian
 
 const MatrixImage: FC = () => {
   return (

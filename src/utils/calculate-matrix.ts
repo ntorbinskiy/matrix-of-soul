@@ -182,12 +182,12 @@ export const parseDate = (date: string): Date => {
   return new Date(year, month, day);
 };
 
-export const calculateAge = (globalDate: string): number => {
-  if (globalDate.length === 0) {
+export const calculateAge = (birthDate: string): number => {
+  if (birthDate.length === 0) {
     return 0;
   }
 
-  const date = parseDate(globalDate);
+  const date = parseDate(birthDate);
 
   const diff_ms = Date.now() - date.getTime();
 
@@ -196,8 +196,8 @@ export const calculateAge = (globalDate: string): number => {
   return Math.abs(age_dt.getUTCFullYear() - 1970);
 };
 
-export const calculateMatrix = (globalDate: string): Matrix => {
-  const date = parseDate(globalDate);
+export const calculateMatrix = (personalDate: string): Matrix => {
+  const date = parseDate(personalDate);
 
   const dayOfBirth = date.getDate();
   const monthOfBirth = date.getMonth() + 1;

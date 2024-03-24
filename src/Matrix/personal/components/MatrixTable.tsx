@@ -9,15 +9,15 @@ import {
   setCircledNumbersStyles,
   textStyles,
 } from "../styles";
-import theme from "../../theme";
-import { calculateAge, calculateMatrix } from "../../utils/calculate-matrix";
+import theme from "../../../theme";
+import { calculateAge, calculateMatrix } from "../../../utils/calculate-matrix";
 import {
   SecondTableArgs,
   ThirdTableArgs,
   calculateSecondTable,
   calculateThirdTable,
-} from "../../utils/calculate-tables";
-import { useGlobalState } from "../../provider";
+} from "../../../utils/calculate-tables";
+import { useGlobalState } from "../../../provider";
 
 interface GreenTextProps {
   children: ReactNode;
@@ -35,7 +35,7 @@ const ParentStylesProvider: FC<ParentStylesProviderProps> = (props) => (
         gap: "10px",
         width: "350px",
       },
-      [theme.breakpoints.between("sm", "md")]: {
+      [theme.breakpoints.between("sm", "lg")]: {
         width: "600px",
       },
     }}
@@ -53,9 +53,6 @@ const GreenText: FC<GreenTextProps> = ({ children }) => {
         [theme.breakpoints.down("sm")]: {
           fontSize: "15px",
         },
-        [theme.breakpoints.between("md", "lg")]: {
-          fontSize: "19px",
-        },
       }}
     >
       {children}
@@ -64,20 +61,20 @@ const GreenText: FC<GreenTextProps> = ({ children }) => {
 };
 
 const FirstTable: FC = () => {
-  const { globalDate, globalName } = useGlobalState();
+  const { personalDate, personalName } = useGlobalState();
 
   return (
     <ParentStylesProvider>
       <Box sx={dFlexColumn}>
         <GreenText>Data di nascita:</GreenText>
         <Box component="span" sx={blackText}>
-          {globalDate.toString()}
+          {personalDate.toString()}
         </Box>
       </Box>
       <Box sx={dFlexColumn}>
         <GreenText>Nome:</GreenText>
         <Box component="span" sx={blackText}>
-          {globalName}
+          {personalName}
         </Box>
       </Box>
       <Box
@@ -86,14 +83,14 @@ const FirstTable: FC = () => {
           flexDirection: "row",
           gap: "5px",
           alignItems: "center",
-          [theme.breakpoints.down("md")]: {
+          [theme.breakpoints.down("lg")]: {
             flexDirection: "column",
           },
         }}
       >
         <GreenText> Età:</GreenText>
         <Box component="span" sx={blackText}>
-          {calculateAge(globalDate)}
+          {calculateAge(personalDate)}
         </Box>
       </Box>
     </ParentStylesProvider>
@@ -137,9 +134,9 @@ const SecondTableBlock: FC<SecondTableBlockProps> = (props) => (
 );
 
 const SecondTable: FC = () => {
-  const { globalDate } = useGlobalState();
+  const { personalDate } = useGlobalState();
 
-  const { a1, b1, c1, d1, e1, f1, g1, h1 } = calculateMatrix(globalDate);
+  const { a1, b1, c1, d1, e1, f1, g1, h1 } = calculateMatrix(personalDate);
 
   const secondTableArgs: SecondTableArgs = {
     a1,
@@ -213,9 +210,9 @@ const ThirdTableBlock: FC<ThirdTableBlockProps> = (props) => {
 };
 
 const ThirdTable = () => {
-  const { globalDate } = useGlobalState();
+  const { personalDate } = useGlobalState();
 
-  const { e1, f1, g1, h1 } = calculateMatrix(globalDate);
+  const { e1, f1, g1, h1 } = calculateMatrix(personalDate);
 
   const thirdTableArgs: ThirdTableArgs = {
     e1,
@@ -263,7 +260,7 @@ export const MatrixTable: FC = () => {
   return (
     <Box
       sx={{
-        [theme.breakpoints.down("md")]: {
+        [theme.breakpoints.down("lg")]: {
           flexDirection: "column",
         },
       }}

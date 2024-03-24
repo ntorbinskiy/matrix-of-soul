@@ -1,28 +1,68 @@
 import "./styles/App.css";
 
-import { Box, Button, SxProps, Theme } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import theme from "./theme";
 
 import Footer from "./components/Footer";
-import Form from "./components/Form";
-import { FC } from "react";
+import PersonalForm from "./Matrix/personal/components/PersonalForm";
+import { FC, ReactNode } from "react";
+import { MatrixType, useGlobalState } from "./provider";
+import CompatibleMatrix from "./Matrix/compatible";
 
-const styles: SxProps<Theme> = {
-  color: "#c3d4a5",
-  fontSize: "30px",
-  textAlign: "center",
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "20px",
-  },
-};
-
-export interface State {
-  globalName: string;
-  globalDate: string;
-  setData: React.Dispatch<React.SetStateAction<Omit<State, "setData">>>;
+interface MatrixButtonProps {
+  currentType: MatrixType;
+  children: ReactNode;
 }
 
+const MatrixButton: FC<MatrixButtonProps> = ({ currentType, children }) => {
+  const state = useGlobalState();
+
+  return (
+    <Button
+      variant={currentType === state.matrixType ? "default" : "outlined"}
+      color="success"
+      onClick={() => state.setData({ ...state, matrixType: currentType })}
+    >
+      {children}
+    </Button>
+  );
+};
+
+const MatrixTypeButtons: FC = () => {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        columnGap: "70px",
+        justifyContent: "center",
+        mt: "200px",
+        mb: "200px",
+        [theme.breakpoints.down("sm")]: {
+          flexDirection: "column",
+          mb: "65px",
+          mt: "120px",
+          alignItems: "center",
+        },
+        "& > button": {
+          width: "280px",
+        },
+      }}
+    >
+      <MatrixButton currentType="personal">
+        Matrice <br />
+        personale
+      </MatrixButton>
+      <MatrixButton currentType="compatible">
+        Matrice di <br />
+        compatibilità
+      </MatrixButton>
+    </Box>
+  );
+};
+
 const App: FC = () => {
+  const { matrixType } = useGlobalState();
+
   return (
     <>
       <Box
@@ -34,40 +74,8 @@ const App: FC = () => {
         }}
       >
         <Box sx={{ pb: "150px" }}>
-          <Box
-            sx={{
-              display: "flex",
-              columnGap: "70px",
-              justifyContent: "center",
-              mt: "200px",
-              mb: "200px",
-              [theme.breakpoints.down("sm")]: {
-                flexDirection: "column",
-                mb: "65px",
-                mt: 0,
-              },
-            }}
-          >
-            <Button
-              sx={{
-                ...styles,
-                background: "#86945e",
-                "&:hover": {
-                  background: "#49592a",
-                },
-              }}
-              variant="contained"
-              color="success"
-            >
-              Matrice <br />
-              personale
-            </Button>
-            <Button sx={{ ...styles }}>
-              Matrice di <br />
-              compatibilità
-            </Button>
-          </Box>
-          <Form />
+          <MatrixTypeButtons />
+          {matrixType === "personal" ? <PersonalForm /> : <CompatibleMatrix />}
         </Box>
         <Footer />
       </Box>

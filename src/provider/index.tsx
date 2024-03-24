@@ -1,13 +1,26 @@
 import { FC, createContext, useContext, useMemo, useState } from "react";
-import { State } from "../App";
 
 export interface Props {
   children: React.ReactNode;
 }
 
+export type MatrixType = "personal" | "compatible";
+
+interface State {
+  personalName: string;
+  personalDate: string;
+  partnerName: string;
+  partnerDate: string;
+  matrixType: MatrixType;
+  setData: React.Dispatch<React.SetStateAction<Omit<State, "setData">>>;
+}
+
 const initialState: State = {
-  globalName: "Test user",
-  globalDate: "11/11/1111",
+  personalName: "Test user",
+  personalDate: "11/11/1111",
+  partnerName: "Partner",
+  partnerDate: "22/22/2022",
+  matrixType: "personal",
   setData: () => {},
 };
 
@@ -30,7 +43,21 @@ export const StateProvider: FC<Props> = (props) => {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useGlobalState = (): State => {
-  const { globalName, globalDate, setData } = useContext(StateContext);
+  const {
+    personalName,
+    personalDate,
+    setData,
+    matrixType,
+    partnerName,
+    partnerDate,
+  } = useContext(StateContext);
 
-  return { globalName, globalDate, setData };
+  return {
+    personalName,
+    personalDate,
+    setData,
+    matrixType,
+    partnerDate,
+    partnerName,
+  };
 };

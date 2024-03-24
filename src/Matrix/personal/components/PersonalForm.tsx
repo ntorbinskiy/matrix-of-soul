@@ -1,9 +1,9 @@
 import { Box, Button, SvgIcon, SxProps, TextField, Theme } from "@mui/material";
-import { FC, FormEventHandler, useEffect, useState } from "react";
+import { FC, FormEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useGlobalState } from "../provider";
-import { linkButton, matchaColor } from "../Matrix/styles";
+import { useGlobalState } from "../../../provider";
+import { matchaColor } from "../styles";
 import InputMask from "react-input-mask";
 
 interface HeartProps {
@@ -81,39 +81,17 @@ const Heart: FC<HeartProps> = (props) => (
     </svg>
   </SvgIcon>
 );
-const getWindowDimensions = () => {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height,
-  };
-};
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const useWindowDimensions = () => {
-  const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
-  );
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-  return windowDimensions;
-};
-
-const Form: FC = () => {
+const PersonalForm: FC = () => {
   const [name, setName] = useState<string>("");
   const [date, setDate] = useState<string>("");
 
   const navigate = useNavigate();
-  const { setData } = useGlobalState();
+  const state = useGlobalState();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    setData({ globalName: name, globalDate: date });
+    state.setData({ ...state, personalName: name, personalDate: date });
     navigate("/result");
   };
 
@@ -133,6 +111,7 @@ const Form: FC = () => {
           value={name}
           required
           onChange={(event) => setName(event.target.value)}
+          autoComplete="name"
         />
         <InputMask
           mask="99/99/9999"
@@ -140,17 +119,12 @@ const Form: FC = () => {
           value={date}
           required
           placeholder="Inserisci la tua data di nascita"
+          autoComplete="bday"
         >
           <TextField label={"data di nascita"} sx={{ minWidth: "169px" }} />
         </InputMask>
 
-        <Button
-          sx={{
-            ...linkButton,
-            fontSize: "26px",
-          }}
-          type="submit"
-        >
+        <Button type="submit" variant="gradient">
           CALCOLARE
         </Button>
       </Box>
@@ -158,4 +132,4 @@ const Form: FC = () => {
   );
 };
 
-export default Form;
+export default PersonalForm;

@@ -7,18 +7,18 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { calculateHealthMap } from "../../utils/calculate-health-map";
-import { calculateMatrix } from "../../utils/calculate-matrix";
-import { useGlobalState } from "../../provider";
+import { calculateHealthMap } from "../../../utils/calculate-health-map";
+import { calculateMatrix } from "../../../utils/calculate-matrix";
+import { useGlobalState } from "../../../provider";
 import { FC } from "react";
-import theme from "../../theme";
+import theme from "../../../theme";
 import { matchaColor } from "../styles";
 
 export const MatrixHealthMap: FC = () => {
-  const { globalDate } = useGlobalState();
+  const { personalDate } = useGlobalState();
 
   const { a1, a2, a3, a4, b1, b2, b3, b4, c1, c3, d1, d3, centerNumber } =
-    calculateMatrix(globalDate);
+    calculateMatrix(personalDate);
 
   const rows = calculateHealthMap({
     a1,
