@@ -7,6 +7,8 @@ import { useGlobalState } from "../../provider";
 import { Theme } from "@emotion/react";
 import { matchaColor } from "../personal/styles";
 import theme from "../../theme";
+import { useNavigate } from "react-router-dom";
+import { InputNameField } from "../../components/InputField";
 
 interface HeartProps {
   sx: SxProps<Theme>;
@@ -14,34 +16,28 @@ interface HeartProps {
 
 const Heart: FC<HeartProps> = (props) => (
   <SvgIcon sx={props.sx}>
-    <svg
-      width="127"
-      height="128"
-      viewBox="0 0 127 128"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="127" height="128" viewBox="0 0 127 128" fill="none">
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M47.4388 43.0588C41.8598 43.5793 36.9031 47.2365 34.7751 52.4023C32.6184 57.6376 33.5109 63.6499 37.0859 67.9695C37.3484 68.2867 43.1714 74.141 50.026 80.979L58.711 89.6432C60.8374 91.7644 64.2106 91.8518 66.4259 89.8236C73.785 83.0862 88.7945 69.2882 89.1898 68.8823C93.6371 64.3156 94.7545 57.399 91.974 51.6482C91.1461 49.936 90.1784 48.5993 88.813 47.2819C84.6943 43.3082 78.7695 41.9736 73.3051 43.7888C68.9287 45.2425 65.3205 48.7793 63.777 53.1282C63.6997 53.346 63.3921 53.3473 63.3129 53.1302L63.2821 53.0458C62.1448 49.9263 60.0508 47.3 57.2193 45.4421C54.4153 43.602 50.8718 42.7386 47.4388 43.0588Z"
         fill={matchaColor}
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M47.4388 43.0588C41.8598 43.5793 36.9031 47.2365 34.7751 52.4023C32.6184 57.6376 33.5109 63.6499 37.0859 67.9695C37.3484 68.2867 43.1714 74.141 50.026 80.979L58.711 89.6432C60.8374 91.7644 64.2106 91.8518 66.4259 89.8236C73.785 83.0862 88.7945 69.2882 89.1898 68.8823C93.6371 64.3156 94.7545 57.399 91.974 51.6482C91.1461 49.936 90.1784 48.5993 88.813 47.2819C84.6943 43.3082 78.7695 41.9736 73.3051 43.7888C68.9287 45.2425 65.3205 48.7793 63.777 53.1282C63.6997 53.346 63.3921 53.3473 63.3129 53.1302L63.2821 53.0458C62.1448 49.9263 60.0508 47.3 57.2193 45.4421C54.4153 43.602 50.8718 42.7386 47.4388 43.0588Z"
         fill="url(#paint0_linear_307_927)"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M47.4388 43.0588C41.8598 43.5793 36.9031 47.2365 34.7751 52.4023C32.6184 57.6376 33.5109 63.6499 37.0859 67.9695C37.3484 68.2867 43.1714 74.141 50.026 80.979L58.711 89.6432C60.8374 91.7644 64.2106 91.8518 66.4259 89.8236C73.785 83.0862 88.7945 69.2882 89.1898 68.8823C93.6371 64.3156 94.7545 57.399 91.974 51.6482C91.1461 49.936 90.1784 48.5993 88.813 47.2819C84.6943 43.3082 78.7695 41.9736 73.3051 43.7888C68.9287 45.2425 65.3205 48.7793 63.777 53.1282C63.6997 53.346 63.3921 53.3473 63.3129 53.1302L63.2821 53.0458C62.1448 49.9263 60.0508 47.3 57.2193 45.4421C54.4153 43.602 50.8718 42.7386 47.4388 43.0588Z"
         fill="url(#paint1_linear_307_927)"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M47.4388 43.0588C41.8598 43.5793 36.9031 47.2365 34.7751 52.4023C32.6184 57.6376 33.5109 63.6499 37.0859 67.9695C37.3484 68.2867 43.1714 74.141 50.026 80.979L58.711 89.6432C60.8374 91.7644 64.2106 91.8518 66.4259 89.8236C73.785 83.0862 88.7945 69.2882 89.1898 68.8823C93.6371 64.3156 94.7545 57.399 91.974 51.6482C91.1461 49.936 90.1784 48.5993 88.813 47.2819C84.6943 43.3082 78.7695 41.9736 73.3051 43.7888C68.9287 45.2425 65.3205 48.7793 63.777 53.1282C63.6997 53.346 63.3921 53.3473 63.3129 53.1302L63.2821 53.0458C62.1448 49.9263 60.0508 47.3 57.2193 45.4421C54.4153 43.602 50.8718 42.7386 47.4388 43.0588Z"
         fill="url(#paint2_linear_307_927)"
       />
@@ -62,26 +58,26 @@ const Heart: FC<HeartProps> = (props) => (
         fill="url(#paint5_linear_307_927)"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M101.311 25.024C99.1674 25.2098 97.2634 26.5154 96.4459 28.3596C95.6175 30.2286 95.9603 32.375 97.3336 33.9171C97.4344 34.0303 99.6713 36.1203 102.304 38.5615L103.455 39.6278C105.541 41.5619 108.706 41.6343 110.87 39.7882C113.749 37.333 117.231 34.3551 117.349 34.243C119.057 32.6126 119.486 30.1434 118.418 28.0904C118.1 27.4791 117.729 27.002 117.204 26.5317C115.622 25.113 113.346 24.6366 111.247 25.2846C109.566 25.8036 108.18 27.0662 107.587 28.6188C107.556 28.7003 107.44 28.7008 107.408 28.6196L107.397 28.5893C106.96 27.4757 106.155 26.5381 105.068 25.8748C103.991 25.2179 102.629 24.9097 101.311 25.024Z"
         fill={matchaColor}
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M101.311 25.024C99.1674 25.2098 97.2634 26.5154 96.4459 28.3596C95.6175 30.2286 95.9603 32.375 97.3336 33.9171C97.4344 34.0303 99.6713 36.1203 102.304 38.5615L103.455 39.6278C105.541 41.5619 108.706 41.6343 110.87 39.7882C113.749 37.333 117.231 34.3551 117.349 34.243C119.057 32.6126 119.486 30.1434 118.418 28.0904C118.1 27.4791 117.729 27.002 117.204 26.5317C115.622 25.113 113.346 24.6366 111.247 25.2846C109.566 25.8036 108.18 27.0662 107.587 28.6188C107.556 28.7003 107.44 28.7008 107.408 28.6196L107.397 28.5893C106.96 27.4757 106.155 26.5381 105.068 25.8748C103.991 25.2179 102.629 24.9097 101.311 25.024Z"
         fill="url(#paint6_linear_307_927)"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M101.311 25.024C99.1674 25.2098 97.2634 26.5154 96.4459 28.3596C95.6175 30.2286 95.9603 32.375 97.3336 33.9171C97.4344 34.0303 99.6713 36.1203 102.304 38.5615L103.455 39.6278C105.541 41.5619 108.706 41.6343 110.87 39.7882C113.749 37.333 117.231 34.3551 117.349 34.243C119.057 32.6126 119.486 30.1434 118.418 28.0904C118.1 27.4791 117.729 27.002 117.204 26.5317C115.622 25.113 113.346 24.6366 111.247 25.2846C109.566 25.8036 108.18 27.0662 107.587 28.6188C107.556 28.7003 107.44 28.7008 107.408 28.6196L107.397 28.5893C106.96 27.4757 106.155 26.5381 105.068 25.8748C103.991 25.2179 102.629 24.9097 101.311 25.024Z"
         fill="url(#paint7_linear_307_927)"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M101.311 25.024C99.1674 25.2098 97.2634 26.5154 96.4459 28.3596C95.6175 30.2286 95.9603 32.375 97.3336 33.9171C97.4344 34.0303 99.6713 36.1203 102.304 38.5615L103.455 39.6278C105.541 41.5619 108.706 41.6343 110.87 39.7882C113.749 37.333 117.231 34.3551 117.349 34.243C119.057 32.6126 119.486 30.1434 118.418 28.0904C118.1 27.4791 117.729 27.002 117.204 26.5317C115.622 25.113 113.346 24.6366 111.247 25.2846C109.566 25.8036 108.18 27.0662 107.587 28.6188C107.556 28.7003 107.44 28.7008 107.408 28.6196L107.397 28.5893C106.96 27.4757 106.155 26.5381 105.068 25.8748C103.991 25.2179 102.629 24.9097 101.311 25.024Z"
         fill="url(#paint8_linear_307_927)"
       />
@@ -95,7 +91,7 @@ const Heart: FC<HeartProps> = (props) => (
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#c3d4a5" />
-          <stop offset="1" stopColor="#c3d4a5" stop-opacity="0" />
+          <stop offset="1" stopColor="#c3d4a5" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_307_927"
@@ -106,7 +102,7 @@ const Heart: FC<HeartProps> = (props) => (
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#cdd0c0" />
-          <stop offset="1" stopColor="#cdd0c0" stop-opacity="0" />
+          <stop offset="1" stopColor="#cdd0c0" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_307_927"
@@ -116,8 +112,8 @@ const Heart: FC<HeartProps> = (props) => (
           y2="35.0674"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#6e8641" />
-          <stop offset="1" stop-color="#6e8641" stop-opacity="0" />
+          <stop stopColor="#6e8641" />
+          <stop offset="1" stopColor="#6e8641" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_307_927"
@@ -127,8 +123,8 @@ const Heart: FC<HeartProps> = (props) => (
           y2="102.765"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#c3d4a5" />
-          <stop offset="1" stop-color="#c3d4a5" stop-opacity="0" />
+          <stop stopColor="#c3d4a5" />
+          <stop offset="1" stopColor="#c3d4a5" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint4_linear_307_927"
@@ -138,8 +134,8 @@ const Heart: FC<HeartProps> = (props) => (
           y2="41.6402"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#cdd0c0" />
-          <stop offset="1" stop-color="#cdd0c0" stop-opacity="0" />
+          <stop stopColor="#cdd0c0" />
+          <stop offset="1" stopColor="#cdd0c0" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint5_linear_307_927"
@@ -149,8 +145,8 @@ const Heart: FC<HeartProps> = (props) => (
           y2="6.62149"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#6e8641" />
-          <stop offset="1" stop-color="#6e8641" stop-opacity="0" />
+          <stop stopColor="#6e8641" />
+          <stop offset="1" stopColor="#6e8641" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint6_linear_307_927"
@@ -160,8 +156,8 @@ const Heart: FC<HeartProps> = (props) => (
           y2="43.3769"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#c3d4a5" />
-          <stop offset="1" stop-color="#c3d4a5" stop-opacity="0" />
+          <stop stopColor="#c3d4a5" />
+          <stop offset="1" stopColor="#c3d4a5" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint7_linear_307_927"
@@ -171,8 +167,8 @@ const Heart: FC<HeartProps> = (props) => (
           y2="29.9791"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#cdd0c0" />
-          <stop offset="1" stop-color="#cdd0c0" stop-opacity="0" />
+          <stop stopColor="#cdd0c0" />
+          <stop offset="1" stopColor="#cdd0c0" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint8_linear_307_927"
@@ -182,8 +178,8 @@ const Heart: FC<HeartProps> = (props) => (
           y2="20.5683"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#6e8641" />
-          <stop offset="1" stop-color="#6e8641" stop-opacity="0" />
+          <stop stopColor="#6e8641" />
+          <stop offset="1" stopColor="#6e8641" stopOpacity="0" />
         </linearGradient>
       </defs>
     </svg>
@@ -192,6 +188,7 @@ const Heart: FC<HeartProps> = (props) => (
 
 const CompatibleMatrix = () => {
   const state = useGlobalState();
+  const navigate = useNavigate();
 
   const [personal, setPersonal] = useState<{
     personalName: string;
@@ -216,6 +213,8 @@ const CompatibleMatrix = () => {
       personalName: personal.personalName,
       personalDate: personal.personalDate,
     });
+
+    navigate("/result");
   };
 
   return (
@@ -248,6 +247,12 @@ const CompatibleMatrix = () => {
           }}
         >
           <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <InputNameField
+              value={personal.personalName}
+              onChangeValue={(personalName) =>
+                setPersonal({ ...personal, personalName })
+              }
+            />
             <TextField
               label="Nome"
               placeholder="Inserisci il tuo nome"
@@ -272,15 +277,11 @@ const CompatibleMatrix = () => {
             </InputMask>
           </Box>
           <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <TextField
-              label="Nome"
-              placeholder="Inserisci il tuo nome"
+            <InputNameField
               value={partner.partnerName}
-              required
-              onChange={(event) =>
-                setPartner({ ...partner, partnerName: event.target.value })
+              onChangeValue={(partnerName) =>
+                setPartner({ ...partner, partnerName })
               }
-              autoComplete="name"
             />
             <InputMask
               mask="99/99/9999"

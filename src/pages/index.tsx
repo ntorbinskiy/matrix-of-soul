@@ -1,13 +1,11 @@
-import "./styles/App.css";
-
-import { Box, Button } from "@mui/material";
-import theme from "./theme";
-
-import Footer from "./components/Footer";
-import PersonalForm from "./Matrix/personal/components/PersonalForm";
-import { FC, ReactNode } from "react";
-import { MatrixType, useGlobalState } from "./provider";
-import CompatibleMatrix from "./Matrix/compatible";
+import { Button, Box } from "@mui/material";
+import { ReactNode, FC } from "react";
+import CompatibleMatrix from "../Matrix/compatible";
+import PersonalForm from "../Matrix/personal/components/PersonalForm";
+import Footer from "../components/Footer";
+import { MatrixType, useGlobalState } from "../provider";
+import theme from "../theme";
+import "../styles/App.css";
 
 interface MatrixButtonProps {
   currentType: MatrixType;
@@ -60,7 +58,7 @@ const MatrixTypeButtons: FC = () => {
   );
 };
 
-const App: FC = () => {
+const MainPage: FC = () => {
   const { matrixType } = useGlobalState();
 
   return (
@@ -83,4 +81,4 @@ const App: FC = () => {
   );
 };
 
-export default App;
+export default MainPage;

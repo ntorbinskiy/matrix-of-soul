@@ -42,22 +42,4 @@ export const StateProvider: FC<Props> = (props) => {
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useGlobalState = (): State => {
-  const {
-    personalName,
-    personalDate,
-    setData,
-    matrixType,
-    partnerName,
-    partnerDate,
-  } = useContext(StateContext);
-
-  return {
-    personalName,
-    personalDate,
-    setData,
-    matrixType,
-    partnerDate,
-    partnerName,
-  };
-};
+export const useGlobalState = (): State => useContext(StateContext);

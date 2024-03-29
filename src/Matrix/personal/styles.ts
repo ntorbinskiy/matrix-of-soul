@@ -30,15 +30,6 @@ export const blackText: SxProps<Theme> = {
 };
 
 export const linkButton: SxProps<Theme> = {
-  //   background:
-  //     "linear-gradient(101deg,#6e8641,#c3d4a5),linear-gradient(101deg,#fff,hsla(0,0%,100%,.3))",
-  //   color: "white",
-  //   border: "3px solid transparent",
-  //   backgroundOrigin: "border-box",
-  //   backgroundClip: "content-box,border-box",
-  //   WebkitBackdropFilter: "blur(47.275px)",
-  //   backdropFilter: "blur(47.275px)",
-  //   borderRadius: "15px",
   width: "310px",
   height: "62px",
   letterSpacing: ".025em",
@@ -58,10 +49,6 @@ export const circleItemStyles: SxProps<Theme> = {
     height: "24px",
     fontSize: "15px",
   },
-  //   [theme.breakpoints.between("md", "lg")]: {
-  //     width: "24px",
-  //     height: "24px",
-  //   },
 };
 
 export const setCircledNumbersStyles = (selector: string): SxProps<Theme> => ({

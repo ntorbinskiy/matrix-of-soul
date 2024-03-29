@@ -80,7 +80,7 @@ interface RowH {
   h3: number;
 }
 
-export interface Matrix
+export interface PersonalMatrix
   extends RowA,
     RowB,
     RowC,
@@ -97,6 +97,11 @@ export interface Matrix
   d1: number;
   centerNumber: number;
 }
+
+type CompatibleMatrix = Omit<
+  PersonalMatrix,
+  "e2" | "e3" | "f2" | "f3" | "g2" | "g3" | "h2" | "h3"
+>;
 
 const calculateRowA = (a1: number, centerNumber: number): RowA => {
   const a3 = calculateNumber(a1 + centerNumber);
@@ -182,21 +187,9 @@ export const parseDate = (date: string): Date => {
   return new Date(year, month, day);
 };
 
-export const calculateAge = (birthDate: string): number => {
-  if (birthDate.length === 0) {
-    return 0;
-  }
-
-  const date = parseDate(birthDate);
-
-  const diff_ms = Date.now() - date.getTime();
-
-  const age_dt = new Date(diff_ms);
-
-  return Math.abs(age_dt.getUTCFullYear() - 1970);
-};
-
-export const calculateMatrix = (personalDate: string): Matrix => {
+export const calculatePersonalMatrix = (
+  personalDate: string
+): PersonalMatrix => {
   const date = parseDate(personalDate);
 
   const dayOfBirth = date.getDate();
@@ -247,6 +240,70 @@ export const calculateMatrix = (personalDate: string): Matrix => {
     h1,
     h2,
     h3,
+    k,
+    n,
+    o,
+    centerNumber,
+  };
+};
+
+const parsePersonalToCompatibleMatrix = (
+  matrix: PersonalMatrix
+): CompatibleMatrix => {
+  const { e2, e3, f2, f3, g2, g3, h2, h3, ...compatibleMatrix } = matrix;
+
+  return compatibleMatrix;
+};
+
+export const calculateCompatibleMatrix = (
+  personalDate: string,
+  partnerDate: string
+): CompatibleMatrix => {
+  const personalMatrix = parsePersonalToCompatibleMatrix(
+    calculatePersonalMatrix(personalDate)
+  );
+
+  const partnerMatrix = parsePersonalToCompatibleMatrix(
+    calculatePersonalMatrix(partnerDate)
+  );
+
+  const a1 = calculateNumber(personalMatrix.a1 + partnerMatrix.a1);
+  const b1 = calculateNumber(personalMatrix.b1 + partnerMatrix.b1);
+  const c1 = calculateNumber(personalMatrix.c1 + partnerMatrix.c1);
+  const d1 = calculateNumber(personalMatrix.d1 + partnerMatrix.d1);
+
+  const centerNumber = calculateNumber(a1 + b1 + c1 + d1);
+
+  const { a2, a3, a4 } = calculateRowA(a1, centerNumber);
+  const { b2, b3, b4 } = calculateRowB(b1, centerNumber);
+  const { c2, c3 } = calculateRowC(c1, centerNumber);
+  const { d2, d3 } = calculateRowD(d1, centerNumber);
+  const { e1 } = calculateRowE(a1, b1, centerNumber);
+  const { f1 } = calculateRowF(c1, b1, centerNumber);
+  const { g1 } = calculateRowG(c1, d1, centerNumber);
+  const { h1 } = calculateRowH(d1, a1, centerNumber);
+  const { k } = calculateRowK(c3, d3);
+  const { n, o } = calculateNAndO(k, c3, d3);
+
+  return {
+    a1,
+    a2,
+    a3,
+    a4,
+    b1,
+    b2,
+    b3,
+    b4,
+    c1,
+    c2,
+    c3,
+    d1,
+    d2,
+    d3,
+    e1,
+    f1,
+    g1,
+    h1,
     k,
     n,
     o,

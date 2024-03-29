@@ -20,10 +20,19 @@ type HealthMapItemSubName =
   | "(Corpo)"
   | "";
 
+export enum ChacraTypes {
+  chacra1,
+  chacra2,
+  chacra3,
+  chacra4,
+  chacra5,
+  chacra6,
+  chacra7,
+  chacra8,
+}
+
 interface HealthMapItem {
-  color: string;
-  name: HealthMapItemName;
-  subName: HealthMapItemSubName;
+  chacraType: ChacraTypes;
   physics: number;
   energy: number;
   emotion: number;
@@ -61,17 +70,13 @@ export const calculateHealthMap = ({
   d3,
 }: HealthMapArgs): HealthMapItem[] => [
   {
-    color: "rgb(220, 147, 246)",
-    name: "Sahasrara",
-    subName: "(Energia vitale, intelligenza)",
+    chacraType: ChacraTypes.chacra1,
     physics: a1,
     energy: b1,
     emotion: calculateNumber(a1 + b1),
   },
   {
-    color: "rgb(110, 115, 241)",
-    name: "Ajna",
-    subName: "(Occhio energetico)",
+    chacraType: ChacraTypes.chacra2,
     physics: a2,
     energy: b2,
     emotion: calculateNumber(a2 + b2),

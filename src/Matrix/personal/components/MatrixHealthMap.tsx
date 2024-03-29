@@ -7,18 +7,32 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { calculateHealthMap } from "../../../utils/calculate-health-map";
-import { calculateMatrix } from "../../../utils/calculate-matrix";
+import {
+  ChacraTypes,
+  calculateHealthMap,
+} from "../../../utils/calculate-health-map";
+import { calculatePersonalMatrix } from "../../../utils/calculate-matrix";
 import { useGlobalState } from "../../../provider";
 import { FC } from "react";
 import theme from "../../../theme";
 import { matchaColor } from "../styles";
 
+const chacraToColorsMap: Record<ChacraTypes, string> = {
+  [ChacraTypes.chacra1]: "rgb(220, 147, 246)",
+  [ChacraTypes.chacra2]: "rgb(110, 115, 241)",
+  [ChacraTypes.chacra3]: "rgb(120, 234, 234)",
+  [ChacraTypes.chacra4]: "rgb(165, 239, 119)",
+  [ChacraTypes.chacra5]: "rgb(248, 233, 103)",
+  [ChacraTypes.chacra6]: "rgb(251, 170, 75)",
+  [ChacraTypes.chacra7]: "rgb(245, 69, 69)",
+  [ChacraTypes.chacra8]: "transparent",
+};
+
 export const MatrixHealthMap: FC = () => {
   const { personalDate } = useGlobalState();
 
   const { a1, a2, a3, a4, b1, b2, b3, b4, c1, c3, d1, d3, centerNumber } =
-    calculateMatrix(personalDate);
+    calculatePersonalMatrix(personalDate);
 
   const rows = calculateHealthMap({
     a1,
@@ -114,7 +128,9 @@ export const MatrixHealthMap: FC = () => {
               <TableCell
                 component="th"
                 scope="row"
-                sx={{ background: `${row.color} !important` }}
+                sx={{
+                  background: `${chacraToColorsMap[row.chacraType]} !important`,
+                }}
               />
               <TableCell
                 align="right"

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalState } from "../../../provider";
 import { matchaColor } from "../styles";
 import InputMask from "react-input-mask";
+import { InputNameField } from "../../../components/InputField";
 
 interface HeartProps {
   sx: SxProps<Theme>;
@@ -12,13 +13,7 @@ interface HeartProps {
 
 const Heart: FC<HeartProps> = (props) => (
   <SvgIcon sx={props.sx} viewBox="0 0 103 83">
-    <svg
-      width="103"
-      height="83"
-      viewBox="0 0 103 83"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="103" height="83" viewBox="0 0 103 83" fill="none">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -105,14 +100,7 @@ const PersonalForm: FC = () => {
         sx={{ alignItems: "center", flexDirection: "column", display: "flex" }}
         onSubmit={handleSubmit}
       >
-        <TextField
-          label="Nome"
-          placeholder="Inserisci il tuo nome"
-          value={name}
-          required
-          onChange={(event) => setName(event.target.value)}
-          autoComplete="name"
-        />
+        <InputNameField value={name} onChangeValue={setName} />
         <InputMask
           mask="99/99/9999"
           onChange={(event) => setDate(event.target.value)}

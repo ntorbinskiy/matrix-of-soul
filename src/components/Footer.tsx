@@ -37,8 +37,7 @@ const Footer = () => {
         boxShadow: "0 4px 39px 0 rgba(0,0,0,0.17)",
         paddingBottom: "25px",
         position: "absolute",
-        width: "100%",
-        left: 0,
+        width: "calc(100% + 40px)",
         bottom: 0,
       }}
     >

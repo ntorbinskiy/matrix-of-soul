@@ -4,7 +4,7 @@ import theme from "../../../theme";
 
 import { FC, useEffect, useState } from "react";
 import { useGlobalState } from "../../../provider";
-import { calculateMatrix } from "../../../utils/calculate-matrix";
+import { calculatePersonalMatrix } from "../../../utils/calculate-matrix";
 
 type NumberBackground =
   | "rgb(138 70 163)"
@@ -130,8 +130,8 @@ const Number: FC<NumberProps> = ({ state }) => {
   );
 };
 
-const NumberList: FC = () => {
-  const { personalDate } = useGlobalState();
+const useNumbersList = (): NumberState[] => {
+  const { personalDate, matrixType } = useGlobalState();
 
   const {
     a1,
@@ -164,9 +164,9 @@ const NumberList: FC = () => {
     n,
     o,
     centerNumber,
-  } = calculateMatrix(personalDate);
+  } = calculatePersonalMatrix(personalDate);
 
-  const numbersStateArray: NumberState[] = [
+  const compatibleMatrixNumbers: NumberState[] = [
     {
       number: b1,
       color: "white",
@@ -193,10 +193,6 @@ const NumberList: FC = () => {
       top: 20,
       background: "rgb(69 207 225)",
     },
-    { number: e2, size: "medium", left: 23, top: 23 },
-    { number: f2, size: "medium", right: 23, top: 23 },
-    { number: e3, size: "small", left: 29, top: 29 },
-    { number: f3, size: "small", right: 29, top: 29 },
     {
       number: b4,
       color: "white",
@@ -279,34 +275,10 @@ const NumberList: FC = () => {
       right: 33.8,
     },
     {
-      number: h3,
-      size: "small",
-      bottom: 28.5,
-      right: 28.5,
-    },
-    {
       number: n,
       size: "small",
       bottom: 26.5,
       right: 41,
-    },
-    {
-      number: g3,
-      size: "small",
-      bottom: 28.5,
-      left: 28.5,
-    },
-    {
-      number: h2,
-      size: "medium",
-      bottom: 23,
-      left: 23,
-    },
-    {
-      number: g2,
-      size: "medium",
-      bottom: 23,
-      right: 23,
     },
     {
       number: d3,
@@ -344,9 +316,49 @@ const NumberList: FC = () => {
     },
   ];
 
+  const personalMatrixNumbers: NumberState[] = [
+    ...compatibleMatrixNumbers,
+    { number: e2, size: "medium", left: 23, top: 23 },
+    { number: f2, size: "medium", right: 23, top: 23 },
+    { number: e3, size: "small", left: 29, top: 29 },
+    { number: f3, size: "small", right: 29, top: 29 },
+    {
+      number: h3,
+      size: "small",
+      bottom: 28.5,
+      right: 28.5,
+    },
+    {
+      number: g3,
+      size: "small",
+      bottom: 28.5,
+      left: 28.5,
+    },
+    {
+      number: h2,
+      size: "medium",
+      bottom: 23,
+      left: 23,
+    },
+    {
+      number: g2,
+      size: "medium",
+      bottom: 23,
+      right: 23,
+    },
+  ];
+
+  return matrixType === "personal"
+    ? personalMatrixNumbers
+    : compatibleMatrixNumbers;
+};
+
+const NumberList: FC = () => {
+  const matrixNumbers = useNumbersList();
+
   return (
     <>
-      {numbersStateArray.map((number, index) => (
+      {matrixNumbers.map((number, index) => (
         <Number state={number} key={index} />
       ))}
     </>
@@ -373,7 +385,7 @@ const MatrixImage: FC = () => {
           alt="matrix"
           width={696}
           height={700}
-          className="matrix-img"
+          style={{ maxWidth: "100%", height: "auto" }}
         />
         <NumberList />
       </Box>
