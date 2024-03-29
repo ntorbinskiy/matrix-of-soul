@@ -8,7 +8,7 @@ import MatrixTable from "./components/MatrixTable";
 import theme from "../../theme";
 import "./styles.css";
 import MatrixImage from "./components/MatrixImage";
-import MatrixHealthMap from "./components/MatrixHealthMap";
+import { MatrixHealthMap } from "./components/matrix-health-map/MatrixHealthMap";
 
 const juliSiteLink = "https://mssg.me/juli.matrix/servizi";
 

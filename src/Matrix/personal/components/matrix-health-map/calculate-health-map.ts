@@ -1,24 +1,24 @@
-import { calculateNumber } from "./calculate-matrix";
+import { calculateNumber } from "../../../../utils/calculate-matrix";
 
-type HealthMapItemName =
-  | "Sahasrara"
-  | "Ajna"
-  | "Vishudha"
-  | "Anahata"
-  | "Manipura"
-  | "Swadhisthana"
-  | "Muladhara"
-  | "Generale:";
+// type HealthMapItemName =
+//   | "Sahasrara"
+//   | "Ajna"
+//   | "Vishudha"
+//   | "Anahata"
+//   | "Manipura"
+//   | "Swadhisthana"
+//   | "Muladhara"
+//   | "Generale:";
 
-type HealthMapItemSubName =
-  | "(Energia vitale, intelligenza)"
-  | "(Occhio energetico)"
-  | "(Destino)"
-  | "(Energia della creatività)"
-  | "(Energia vitale cosmica)"
-  | "(Energia dell'amore e della gioia)"
-  | "(Corpo)"
-  | "";
+// type HealthMapItemSubName =
+//   | "(Energia vitale, intelligenza)"
+//   | "(Occhio energetico)"
+//   | "(Destino)"
+//   | "(Energia della creatività)"
+//   | "(Energia vitale cosmica)"
+//   | "(Energia dell'amore e della gioia)"
+//   | "(Corpo)"
+//   | "";
 
 export enum ChacraTypes {
   chacra1,
@@ -82,49 +82,37 @@ export const calculateHealthMap = ({
     emotion: calculateNumber(a2 + b2),
   },
   {
-    color: "rgb(120, 234, 234)",
-    name: "Vishudha",
-    subName: "(Destino)",
+    chacraType: ChacraTypes.chacra3,
     physics: a3,
     energy: b3,
     emotion: calculateNumber(a3 + b3),
   },
   {
-    color: "rgb(165, 239, 119)",
-    name: "Anahata",
-    subName: "(Energia della creatività)",
+    chacraType: ChacraTypes.chacra4,
     physics: a4,
     energy: b4,
     emotion: calculateNumber(a4 + b4),
   },
   {
-    color: "rgb(248, 233, 103)",
-    name: "Manipura",
-    subName: "(Energia vitale cosmica)",
+    chacraType: ChacraTypes.chacra5,
     physics: centerNumber,
     energy: centerNumber,
     emotion: calculateNumber(centerNumber + centerNumber),
   },
   {
-    color: "rgb(251, 170, 75)",
-    name: "Swadhisthana",
-    subName: "(Energia dell'amore e della gioia)",
+    chacraType: ChacraTypes.chacra6,
     physics: c3,
     energy: d3,
     emotion: calculateNumber(d3 + c3),
   },
   {
-    color: "rgb(245, 69, 69)",
-    name: "Muladhara",
-    subName: "(Corpo)",
+    chacraType: ChacraTypes.chacra7,
     physics: c1,
     energy: d1,
     emotion: calculateNumber(c1 + d1),
   },
   {
-    color: "transparent",
-    name: "Generale:",
-    subName: "",
+    chacraType: ChacraTypes.chacra8,
     physics: calculateNumber(a1 + a2 + a3 + a4 + centerNumber + c3 + c1),
     energy: calculateNumber(b1 + b2 + b3 + b4 + +centerNumber + d3 + d1),
     emotion: 1,
