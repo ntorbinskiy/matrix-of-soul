@@ -247,6 +247,7 @@ export const calculatePersonalMatrix = (
   };
 };
 
+// TODO: refactor duplication of code
 const parsePersonalToCompatibleMatrix = (
   matrix: PersonalMatrix
 ): CompatibleMatrix => {
@@ -272,16 +273,20 @@ export const calculateCompatibleMatrix = (
   const c1 = calculateNumber(personalMatrix.c1 + partnerMatrix.c1);
   const d1 = calculateNumber(personalMatrix.d1 + partnerMatrix.d1);
 
-  const centerNumber = calculateNumber(a1 + b1 + c1 + d1);
+  const centerNumber = calculateNumber(
+    personalMatrix.centerNumber + partnerMatrix.centerNumber
+  );
 
   const { a2, a3, a4 } = calculateRowA(a1, centerNumber);
   const { b2, b3, b4 } = calculateRowB(b1, centerNumber);
   const { c2, c3 } = calculateRowC(c1, centerNumber);
   const { d2, d3 } = calculateRowD(d1, centerNumber);
-  const { e1 } = calculateRowE(a1, b1, centerNumber);
-  const { f1 } = calculateRowF(c1, b1, centerNumber);
-  const { g1 } = calculateRowG(c1, d1, centerNumber);
-  const { h1 } = calculateRowH(d1, a1, centerNumber);
+
+  const e1 = calculateNumber(personalMatrix.e1 + partnerMatrix.e1);
+  const f1 = calculateNumber(personalMatrix.f1 + partnerMatrix.f1);
+  const g1 = calculateNumber(personalMatrix.g1 + partnerMatrix.g1);
+  const h1 = calculateNumber(personalMatrix.h1 + partnerMatrix.h1);
+
   const { k } = calculateRowK(c3, d3);
   const { n, o } = calculateNAndO(k, c3, d3);
 

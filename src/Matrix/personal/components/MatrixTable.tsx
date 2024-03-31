@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 
 import { FC, ReactNode } from "react";
 import {
-  boxStyles,
+  parentBoxStyles,
   circleItemStyles,
   dFlexColumn,
   setCircledNumbersStyles,
@@ -22,27 +22,6 @@ import BDayTableBlock from "../../../components/BDayTableBlock";
 interface GreenTextProps {
   children: ReactNode;
 }
-interface ParentStylesProviderProps {
-  children: JSX.Element | JSX.Element[];
-}
-
-export const ParentStylesProvider: FC<ParentStylesProviderProps> = (props) => (
-  <Box
-    sx={{
-      ...boxStyles,
-      [theme.breakpoints.down("sm")]: {
-        height: "110px",
-        gap: "10px",
-        width: "350px",
-      },
-      [theme.breakpoints.between("sm", "lg")]: {
-        width: "600px",
-      },
-    }}
-  >
-    {props.children}
-  </Box>
-);
 
 export const GreenText: FC<GreenTextProps> = ({ children }) => {
   return (
@@ -70,23 +49,33 @@ interface SecondTableBlockProps {
 }
 
 const SecondTableBlock: FC<SecondTableBlockProps> = (props) => (
-  <Box sx={{ ...dFlexColumn, gap: "20px" }}>
+  <Box sx={{ ...dFlexColumn }}>
     <GreenText>{props.label}</GreenText>
     <Box
       sx={{
         display: "flex",
-        gap: "10px",
+        // gap: "10px",
         [theme.breakpoints.down("sm")]: {
-          gap: "0",
+          //   gap: "0",
         },
       }}
     >
-      <Box sx={{ ...dFlexColumn, gap: "15px" }}>
+      <Box
+        sx={{
+          ...dFlexColumn,
+          // gap: "15px"
+        }}
+      >
         <GreenText>{props.secondElement}</GreenText>
         <GreenText>{props.thirdElement}</GreenText>
       </Box>
       <Box sx={setCircledNumbersStyles(" & > div > div, & > div + div")}>
-        <Box sx={{ ...dFlexColumn, gap: "5px" }}>
+        <Box
+          sx={{
+            ...dFlexColumn,
+            //  gap: "5px"
+          }}
+        >
           <Box>{props.circle1}</Box>
           <Box>{props.circle2}</Box>
         </Box>
@@ -117,39 +106,47 @@ const SecondTable: FC = () => {
     calculateSecondTable(secondTableArgs);
 
   return (
-    <ParentStylesProvider>
+    <Box sx={{ ...parentBoxStyles, pt: "12px" }}>
       <Box
         sx={{
           ...dFlexColumn,
-          flexDirection: "row",
-          gap: "15px",
-          [theme.breakpoints.down("sm")]: {
-            gap: "5px",
+          [theme.breakpoints.down("lg")]: {
+            flexDirection: "row",
           },
         }}
       >
-        <SecondTableBlock
-          label="Personale:"
-          secondElement="Cielo:"
-          thirdElement="Terra:"
-          circle1={sky}
-          circle2={earth}
-          circle3={skyPlusEarth}
-        />
-        <SecondTableBlock
-          label="Sociale:"
-          secondElement="Uomo:"
-          thirdElement="Donna:"
-          circle1={male}
-          circle2={female}
-          circle3={malePlusFemale}
-        />
-        <Box>
+        <Box sx={{ columnGap: "20px" }}>
+          <SecondTableBlock
+            label="Personale:"
+            secondElement="Cielo:"
+            thirdElement="Terra:"
+            circle1={sky}
+            circle2={earth}
+            circle3={skyPlusEarth}
+          />
+          <SecondTableBlock
+            label="Sociale:"
+            secondElement="Uomo:"
+            thirdElement="Donna:"
+            circle1={male}
+            circle2={female}
+            circle3={malePlusFemale}
+          />
+        </Box>
+        <Box
+          sx={{
+            pt: "36px",
+            [theme.breakpoints.down("lg")]: {
+              pt: 0,
+              pl: "10px",
+            },
+          }}
+        >
           <GreenText>Generale:</GreenText>
           <Box sx={setCircledNumbersStyles("&")}>{wholeValue}</Box>
         </Box>
       </Box>
-    </ParentStylesProvider>
+    </Box>
   );
 };
 
@@ -189,7 +186,7 @@ const ThirdTable = () => {
     calculateThirdTable(thirdTableArgs);
 
   return (
-    <ParentStylesProvider>
+    <Box sx={{ ...parentBoxStyles, pt: "14px", columnGap: "20px" }}>
       <ThirdTableBlock
         label={
           <>
@@ -216,7 +213,7 @@ const ThirdTable = () => {
         <GreenText>Potere familiare:</GreenText>
         <Box sx={circleItemStyles}>{malePlusFemale}</Box>
       </Box>
-    </ParentStylesProvider>
+    </Box>
   );
 };
 
@@ -228,6 +225,7 @@ export const MatrixTable: FC = () => {
       sx={{
         [theme.breakpoints.down("lg")]: {
           flexDirection: "column",
+          width: "100%",
         },
       }}
     >

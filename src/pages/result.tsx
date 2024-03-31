@@ -23,13 +23,16 @@ const PersonalMatrixResult = () => {
           "* > *": {
             display: "flex",
             alignItems: "center",
-            gap: "10px",
             [theme.breakpoints.down("sm")]: {
               gap: "0",
             },
           },
           display: "flex",
           flexWrap: "wrap",
+          [theme.breakpoints.down("lg")]: {
+            width: "100%",
+            justifyContent: "center",
+          },
         }}
       >
         <Box
@@ -39,6 +42,9 @@ const PersonalMatrixResult = () => {
             gap: "20px",
             pt: "50px",
             flexDirection: "column",
+            [theme.breakpoints.down("lg")]: {
+              width: "100%",
+            },
           }}
         >
           <MatrixTable />
@@ -54,8 +60,22 @@ const CompatibleMatrixResult = () => {
 
   return (
     <>
-      <BDayTableBlock date={personalDate} name={personalName} />
-      <BDayTableBlock date={partnerDate} name={partnerName} />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "20px",
+          alignItems: "center",
+          mt: "20px",
+          [theme.breakpoints.down("lg")]: {
+            flexDirection: "column",
+            width: "100%",
+          },
+        }}
+      >
+        <BDayTableBlock date={personalDate} name={personalName} />
+        <BDayTableBlock date={partnerDate} name={partnerName} />
+      </Box>
       <MatrixImage />
     </>
   );
@@ -76,6 +96,8 @@ const ResultContent: FC = () => {
 };
 
 const ResultPage = () => {
+  const { matrixType } = useGlobalState();
+
   return (
     <Box
       sx={{
@@ -102,11 +124,14 @@ const ResultPage = () => {
           pb: "150px",
           alignItems: "center",
           flexWrap: "wrap",
-          maxWidth: "1440px",
           justifyContent: "center",
+          flexDirection: matrixType === "personal" ? "row" : "column",
           [theme.breakpoints.down("lg")]: {
             flexDirection: "column",
             gap: "20px",
+          },
+          [theme.breakpoints.up("lg")]: {
+            maxWidth: "1440px",
           },
         }}
       >

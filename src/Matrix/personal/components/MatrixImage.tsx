@@ -4,7 +4,10 @@ import theme from "../../../theme";
 
 import { FC, useEffect, useState } from "react";
 import { useGlobalState } from "../../../provider";
-import { calculatePersonalMatrix } from "../../../utils/calculate-matrix";
+import {
+  calculateCompatibleMatrix,
+  calculatePersonalMatrix,
+} from "../../../utils/calculate-matrix";
 
 type NumberBackground =
   | "rgb(138 70 163)"
@@ -131,7 +134,186 @@ const Number: FC<NumberProps> = ({ state }) => {
 };
 
 const useNumbersList = (): NumberState[] => {
-  const { personalDate, matrixType } = useGlobalState();
+  const { personalDate, matrixType, partnerDate } = useGlobalState();
+
+  if (matrixType === "compatible") {
+    const {
+      a1,
+      a2,
+      a3,
+      a4,
+      b1,
+      b2,
+      b3,
+      b4,
+      c1,
+      c2,
+      c3,
+      d1,
+      d2,
+      d3,
+      e1,
+      f1,
+      g1,
+      h1,
+      k,
+      n,
+      o,
+      centerNumber,
+    } = calculateCompatibleMatrix(personalDate, partnerDate);
+
+    const compatibleMatrixNumbers: NumberState[] = [
+      {
+        number: b1,
+        color: "white",
+        size: "large",
+        middleY: true,
+        top: 4,
+        background: "rgb(138 70 163)",
+      },
+      {
+        number: b2,
+        color: "white",
+        size: "medium",
+        middleY: true,
+        top: 13,
+        background: "rgb(82 109 250)",
+      },
+      { number: e1, size: "large", left: 16, top: 16 },
+      { number: f1, size: "large", right: 16, top: 16 },
+      {
+        number: b3,
+        color: "white",
+        size: "small",
+        middleY: true,
+        top: 20,
+        background: "rgb(69 207 225)",
+      },
+      {
+        number: b4,
+        color: "white",
+        size: "small",
+        middleY: true,
+        top: 32,
+        background: "rgb(128 202 41)",
+      },
+      {
+        number: a1,
+        color: "white",
+        size: "large",
+        middleX: true,
+        left: 4,
+        background: "rgb(138 70 163)",
+      },
+      {
+        number: a2,
+        color: "white",
+        size: "medium",
+        middleX: true,
+        left: 12.5,
+        background: "rgb(82 109 250)",
+      },
+      {
+        number: a3,
+        color: "white",
+        size: "small",
+        left: 19.6,
+        middleX: true,
+        background: "rgb(69 207 225)",
+      },
+      {
+        number: a4,
+        color: "white",
+        size: "small",
+        middleX: true,
+        left: 31.5,
+        background: "rgb(128 202 41)",
+      },
+      {
+        number: centerNumber,
+        size: "large",
+        middleX: true,
+        middleY: true,
+        background: "rgb(255 215 0)",
+      },
+      {
+        number: c1,
+        color: "white",
+        size: "large",
+        middleX: true,
+        right: 4,
+        background: "rgb(239 65 65)",
+      },
+      {
+        number: c2,
+        size: "medium",
+        middleX: true,
+        right: 12.5,
+      },
+      {
+        number: c3,
+        color: "white",
+        size: "small",
+        middleX: true,
+        right: 19.8,
+        background: "rgb(255 174 52)",
+      },
+      {
+        number: o,
+        size: "small",
+        bottom: 42,
+        right: 26,
+      },
+      {
+        number: k,
+        size: "small",
+        bottom: 33.8,
+        right: 33.8,
+      },
+      {
+        number: n,
+        size: "small",
+        bottom: 26.5,
+        right: 41,
+      },
+      {
+        number: d3,
+        color: "white",
+        size: "small",
+        middleY: true,
+        bottom: 20.5,
+        background: "rgb(255 174 52)",
+      },
+      {
+        number: h1,
+        left: 16,
+        bottom: 16,
+        size: "large",
+      },
+      {
+        number: g1,
+        size: "large",
+        right: 16,
+        bottom: 16,
+      },
+      {
+        number: d2,
+        size: "medium",
+        middleY: true,
+        bottom: 13,
+      },
+      {
+        number: d1,
+        color: "white",
+        size: "large",
+        middleY: true,
+        bottom: 4,
+        background: "rgb(239 65 65)",
+      },
+    ];
+
+    return compatibleMatrixNumbers;
+  }
 
   const {
     a1,
@@ -166,7 +348,7 @@ const useNumbersList = (): NumberState[] => {
     centerNumber,
   } = calculatePersonalMatrix(personalDate);
 
-  const compatibleMatrixNumbers: NumberState[] = [
+  const personalMatrixNumbers: NumberState[] = [
     {
       number: b1,
       color: "white",
@@ -314,10 +496,6 @@ const useNumbersList = (): NumberState[] => {
       bottom: 4,
       background: "rgb(239 65 65)",
     },
-  ];
-
-  const personalMatrixNumbers: NumberState[] = [
-    ...compatibleMatrixNumbers,
     { number: e2, size: "medium", left: 23, top: 23 },
     { number: f2, size: "medium", right: 23, top: 23 },
     { number: e3, size: "small", left: 29, top: 29 },
@@ -348,9 +526,7 @@ const useNumbersList = (): NumberState[] => {
     },
   ];
 
-  return matrixType === "personal"
-    ? personalMatrixNumbers
-    : compatibleMatrixNumbers;
+  return personalMatrixNumbers;
 };
 
 const NumberList: FC = () => {

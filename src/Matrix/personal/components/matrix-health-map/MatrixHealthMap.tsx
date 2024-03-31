@@ -1,19 +1,10 @@
-import {
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
 import { ChacraTypes, calculateHealthMap } from "./calculate-health-map";
 import { calculatePersonalMatrix } from "../../../../utils/calculate-matrix";
 import { useGlobalState } from "../../../../provider";
 import { FC } from "react";
-import theme from "../../../../theme";
-import { matchaColor } from "../../styles";
+
 import MatrixHealthMapView from "./MatrixHealthMapView";
+import { TableRow, TableCell, Box } from "@mui/material";
 
 const chacraToColorsMap: Record<ChacraTypes, string> = {
   [ChacraTypes.chacra1]: "rgb(220, 147, 246)",

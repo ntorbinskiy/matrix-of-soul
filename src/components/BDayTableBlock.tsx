@@ -1,11 +1,12 @@
 import { Box } from "@mui/material";
 import { FC } from "react";
-import { blackText, dFlexColumn } from "../Matrix/personal/styles";
-import theme from "../theme";
 import {
-  GreenText,
-  ParentStylesProvider,
-} from "../Matrix/personal/components/MatrixTable";
+  bdayTextBlockStyles,
+  blackText,
+  parentBoxStyles,
+} from "../Matrix/personal/styles";
+import theme from "../theme";
+import { GreenText } from "../Matrix/personal/components/MatrixTable";
 
 import { parseDate } from "../utils/calculate-matrix";
 
@@ -30,14 +31,14 @@ interface BDayTableBlockProps {
 
 export const BDayTableBlock: FC<BDayTableBlockProps> = (props) => {
   return (
-    <ParentStylesProvider>
-      <Box sx={dFlexColumn}>
+    <Box sx={{ ...parentBoxStyles, gap: "20px" }}>
+      <Box sx={bdayTextBlockStyles}>
         <GreenText>Data di nascita:</GreenText>
         <Box component="span" sx={blackText}>
           {props.date.toString()}
         </Box>
       </Box>
-      <Box sx={dFlexColumn}>
+      <Box sx={bdayTextBlockStyles}>
         <GreenText>Nome:</GreenText>
         <Box component="span" sx={blackText}>
           {props.name}
@@ -45,7 +46,7 @@ export const BDayTableBlock: FC<BDayTableBlockProps> = (props) => {
       </Box>
       <Box
         sx={{
-          ...dFlexColumn,
+          ...bdayTextBlockStyles,
           flexDirection: "row",
           gap: "5px",
           alignItems: "center",
@@ -59,7 +60,7 @@ export const BDayTableBlock: FC<BDayTableBlockProps> = (props) => {
           {calculateAge(props.date)}
         </Box>
       </Box>
-    </ParentStylesProvider>
+    </Box>
   );
 };
 

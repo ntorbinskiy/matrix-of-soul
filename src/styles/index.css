@@ -11,6 +11,7 @@
 
 * {
   font-family: "MAK" !important;
+  box-sizing: border-box;
 }
 
 body {

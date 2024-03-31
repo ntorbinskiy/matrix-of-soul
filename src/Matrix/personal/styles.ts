@@ -11,7 +11,7 @@ export const boxStyles: SxProps<Theme> = {
   borderRadius: "22px",
   justifyContent: "center",
   alignItems: "center",
-  gap: "40px",
+  //   gap: "40px",
 };
 
 export const textStyles: SxProps<Theme> = {
@@ -25,8 +25,16 @@ export const dFlexColumn: SxProps<Theme> = {
   flexDirection: "column",
 };
 
+export const bdayTextBlockStyles: SxProps<Theme> = {
+  ...dFlexColumn,
+  alignItems: "center",
+};
+
 export const blackText: SxProps<Theme> = {
   fontSize: "19px",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "15px",
+  },
 };
 
 export const linkButton: SxProps<Theme> = {
@@ -57,3 +65,18 @@ export const setCircledNumbersStyles = (selector: string): SxProps<Theme> => ({
   alignItems: "center",
   [selector]: circleItemStyles,
 });
+
+export const parentBoxStyles: SxProps<Theme> = {
+  ...boxStyles,
+  width: "350px",
+  height: "240px",
+  [theme.breakpoints.down("lg")]: {
+    width: "100%",
+    height: "150px",
+  },
+  [theme.breakpoints.down("sm")]: {
+    height: "110px",
+    width: "80%",
+    flexDirection: "column",
+  },
+};
