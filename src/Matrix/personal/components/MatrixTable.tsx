@@ -17,7 +17,7 @@ import {
   calculateThirdTable,
 } from "../../../utils/calculate-tables";
 import { useGlobalState } from "../../../provider";
-import BDayTableBlock from "../../../components/BDayTableBlock";
+import BDayTable from "../../../components/BDayTable";
 
 interface GreenTextProps {
   children: ReactNode;
@@ -227,9 +227,10 @@ export const MatrixTable: FC = () => {
           flexDirection: "column",
           width: "100%",
         },
+        gap: "20px",
       }}
     >
-      <BDayTableBlock date={personalDate} name={personalName} />
+      <BDayTable date={personalDate} name={personalName} />
       <SecondTable />
       <ThirdTable />
     </Box>

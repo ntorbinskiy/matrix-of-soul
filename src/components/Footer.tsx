@@ -26,7 +26,6 @@ const styles: SxProps<Theme> = {
   },
 };
 
-// TODO: refactor footer
 const Footer = () => {
   return (
     <Box
@@ -83,7 +82,5 @@ const Footer = () => {
     </Box>
   );
 };
-
-// TODO: Add hover effect on links
 
 export default Footer;

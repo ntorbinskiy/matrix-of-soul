@@ -9,7 +9,7 @@ import theme from "../theme";
 import { matchaColor } from "../Matrix/personal/styles";
 import { FC } from "react";
 import { useGlobalState } from "../provider";
-import BDayTableBlock from "../components/BDayTableBlock";
+import BDayTable from "../components/BDayTable";
 
 const juliSiteLink = "https://mssg.me/juli.matrix/servizi";
 
@@ -27,6 +27,7 @@ const PersonalMatrixResult = () => {
               gap: "0",
             },
           },
+
           display: "flex",
           flexWrap: "wrap",
           [theme.breakpoints.down("lg")]: {
@@ -73,8 +74,8 @@ const CompatibleMatrixResult = () => {
           },
         }}
       >
-        <BDayTableBlock date={personalDate} name={personalName} />
-        <BDayTableBlock date={partnerDate} name={partnerName} />
+        <BDayTable date={personalDate} name={personalName} />
+        <BDayTable date={partnerDate} name={partnerName} />
       </Box>
       <MatrixImage />
     </>

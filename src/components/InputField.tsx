@@ -2,12 +2,12 @@ import { TextField } from "@mui/material";
 import { FC } from "react";
 import InputMask from "react-input-mask";
 
-interface InputNameFieldProps {
+interface InputFieldProps {
   value: string;
   onChangeValue: (value: string) => void;
 }
 
-export const InputNameField: FC<InputNameFieldProps> = (props) => (
+export const InputNameField: FC<InputFieldProps> = (props) => (
   <TextField
     label="Nome"
     placeholder="Inserisci il tuo nome"
@@ -18,12 +18,7 @@ export const InputNameField: FC<InputNameFieldProps> = (props) => (
   />
 );
 
-interface InputDateFieldProps {
-  value: string;
-  onChangeValue: (value: string) => void;
-}
-
-export const InputDateField: FC<InputDateFieldProps> = (props) => {
+export const InputDateField: FC<InputFieldProps> = (props) => {
   return (
     <InputMask
       mask="99/99/9999"
