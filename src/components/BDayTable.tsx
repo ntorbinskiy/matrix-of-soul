@@ -29,7 +29,7 @@ interface BDayTableBlockProps {
   name: string;
 }
 
-export const BDayTableBlock: FC<BDayTableBlockProps> = (props) => {
+export const BDayTable: FC<BDayTableBlockProps> = (props) => {
   return (
     <Box sx={{ ...parentBoxStyles, gap: "20px" }}>
       <Box sx={bdayTextBlockStyles}>
@@ -64,4 +64,4 @@ export const BDayTableBlock: FC<BDayTableBlockProps> = (props) => {
   );
 };
 
-export default BDayTableBlock;
+export default BDayTable;
