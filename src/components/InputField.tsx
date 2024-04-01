@@ -21,7 +21,7 @@ export const InputNameField: FC<InputFieldProps> = (props) => (
 export const InputDateField: FC<InputFieldProps> = (props) => {
   return (
     <InputMask
-      mask="99/99/9999"
+      mask="99-99-9999"
       placeholder="Inserisci la tua data di nascita"
       value={props.value}
       onChange={(event) => props.onChangeValue(event.target.value)}

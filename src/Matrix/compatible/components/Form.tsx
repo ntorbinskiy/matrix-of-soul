@@ -3,12 +3,13 @@ import { FC, FormEventHandler, useState } from "react";
 import { InputNameField, InputDateField } from "../../../components/InputField";
 import theme from "../../../theme";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useGlobalState } from "../../../provider";
 
 const CompatibleForm: FC = () => {
   const state = useGlobalState();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [personal, setPersonal] = useState<{
     personalName: string;
@@ -24,17 +25,25 @@ const CompatibleForm: FC = () => {
   });
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    const compatibleQueryParams = `type=compatible
+	&personalName=${personal.personalName}
+	&personalDate=${personal.personalDate}
+	&partnerName=${partner.partnerName}
+	&partnerDate=${partner.partnerDate}`;
+
     event.preventDefault();
 
-    state.setData({
-      ...state,
-      partnerDate: partner.partnerDate,
-      partnerName: partner.partnerName,
-      personalName: personal.personalName,
-      personalDate: personal.personalDate,
-    });
+    // state.setData({
+    //   ...state,
+    //   partnerDate: partner.partnerDate,
+    //   partnerName: partner.partnerName,
+    //   personalName: personal.personalName,
+    //   personalDate: personal.personalDate,
+    // });
 
     navigate("/result");
+
+    setSearchParams(compatibleQueryParams);
   };
 
   return (
