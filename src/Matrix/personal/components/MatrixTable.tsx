@@ -11,13 +11,13 @@ import {
 import theme from "../../../theme";
 import { calculatePersonalMatrix } from "../../../utils/calculate-matrix";
 import {
-  SecondTableArgs,
   ThirdTableArgs,
-  calculateSecondTable,
   calculateThirdTable,
 } from "../../../utils/calculate-tables";
 import { useGlobalState } from "../../../provider";
 import BDayTable from "../../../components/BDayTable";
+
+import { MatrixTable } from "../../../components/matrix-table/MatrixTable";
 
 interface GreenTextProps {
   children: ReactNode;
@@ -35,117 +35,6 @@ export const GreenText: FC<GreenTextProps> = ({ children }) => {
       }}
     >
       {children}
-    </Box>
-  );
-};
-
-interface SecondTableBlockProps {
-  label: "Personale:" | "Sociale:";
-  secondElement: "Cielo:" | "Uomo:";
-  thirdElement: "Terra:" | "Donna:";
-  circle1: number;
-  circle2: number;
-  circle3: number;
-}
-
-const SecondTableBlock: FC<SecondTableBlockProps> = (props) => (
-  <Box sx={{ ...dFlexColumn }}>
-    <GreenText>{props.label}</GreenText>
-    <Box
-      sx={{
-        display: "flex",
-        // gap: "10px",
-        [theme.breakpoints.down("sm")]: {
-          //   gap: "0",
-        },
-      }}
-    >
-      <Box
-        sx={{
-          ...dFlexColumn,
-          // gap: "15px"
-        }}
-      >
-        <GreenText>{props.secondElement}</GreenText>
-        <GreenText>{props.thirdElement}</GreenText>
-      </Box>
-      <Box sx={setCircledNumbersStyles(" & > div > div, & > div + div")}>
-        <Box
-          sx={{
-            ...dFlexColumn,
-            //  gap: "5px"
-          }}
-        >
-          <Box>{props.circle1}</Box>
-          <Box>{props.circle2}</Box>
-        </Box>
-        <Box>{props.circle3}</Box>
-      </Box>
-    </Box>
-  </Box>
-);
-
-const SecondTable: FC = () => {
-  const { personalDate } = useGlobalState();
-
-  const { a1, b1, c1, d1, e1, f1, g1, h1 } =
-    calculatePersonalMatrix(personalDate);
-
-  const secondTableArgs: SecondTableArgs = {
-    a1,
-    b1,
-    c1,
-    d1,
-    e1,
-    f1,
-    g1,
-    h1,
-  };
-
-  const { earth, sky, skyPlusEarth, male, female, malePlusFemale, wholeValue } =
-    calculateSecondTable(secondTableArgs);
-
-  return (
-    <Box sx={{ ...parentBoxStyles, pt: "12px" }}>
-      <Box
-        sx={{
-          ...dFlexColumn,
-          [theme.breakpoints.down("lg")]: {
-            flexDirection: "row",
-          },
-        }}
-      >
-        <Box sx={{ columnGap: "20px" }}>
-          <SecondTableBlock
-            label="Personale:"
-            secondElement="Cielo:"
-            thirdElement="Terra:"
-            circle1={sky}
-            circle2={earth}
-            circle3={skyPlusEarth}
-          />
-          <SecondTableBlock
-            label="Sociale:"
-            secondElement="Uomo:"
-            thirdElement="Donna:"
-            circle1={male}
-            circle2={female}
-            circle3={malePlusFemale}
-          />
-        </Box>
-        <Box
-          sx={{
-            pt: "36px",
-            [theme.breakpoints.down("lg")]: {
-              pt: 0,
-              pl: "10px",
-            },
-          }}
-        >
-          <GreenText>Generale:</GreenText>
-          <Box sx={setCircledNumbersStyles("&")}>{wholeValue}</Box>
-        </Box>
-      </Box>
     </Box>
   );
 };
@@ -217,7 +106,7 @@ const ThirdTable = () => {
   );
 };
 
-export const MatrixTable: FC = () => {
+export const MatrixTables: FC = () => {
   const { personalName, personalDate } = useGlobalState();
 
   return (
@@ -231,10 +120,11 @@ export const MatrixTable: FC = () => {
       }}
     >
       <BDayTable date={personalDate} name={personalName} />
-      <SecondTable />
+      {/* <SecondTable /> */}
+      <MatrixTable />
       <ThirdTable />
     </Box>
   );
 };
 
-export default MatrixTable;
+export default MatrixTables;

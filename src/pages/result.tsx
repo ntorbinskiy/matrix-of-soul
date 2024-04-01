@@ -3,13 +3,14 @@ import { Link as RouterLink } from "react-router-dom";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import { MatrixHealthMap } from "../Matrix/personal/components/matrix-health-map/MatrixHealthMap";
 import MatrixImage from "../Matrix/personal/components/MatrixImage";
-import MatrixTable from "../Matrix/personal/components/MatrixTable";
+import MatrixTables from "../Matrix/personal/components/MatrixTable";
 import Footer from "../components/Footer";
 import theme from "../theme";
 import { matchaColor } from "../Matrix/personal/styles";
 import { FC } from "react";
 import { useGlobalState } from "../provider";
 import BDayTable from "../components/BDayTable";
+import { MatrixTable } from "../components/matrix-table/MatrixTable";
 
 const juliSiteLink = "https://mssg.me/juli.matrix/servizi";
 
@@ -48,7 +49,7 @@ const PersonalMatrixResult = () => {
             },
           }}
         >
-          <MatrixTable />
+          <MatrixTables />
         </Box>
       </Box>
     </>
@@ -63,6 +64,13 @@ const CompatibleMatrixResult = () => {
     <>
       <Box
         sx={{
+          "* > *": {
+            display: "flex",
+            alignItems: "center",
+            [theme.breakpoints.down("sm")]: {
+              gap: "0",
+            },
+          },
           display: "flex",
           justifyContent: "center",
           gap: "20px",
@@ -76,6 +84,7 @@ const CompatibleMatrixResult = () => {
       >
         <BDayTable date={personalDate} name={personalName} />
         <BDayTable date={partnerDate} name={partnerName} />
+        <MatrixTable />
       </Box>
       <MatrixImage />
     </>

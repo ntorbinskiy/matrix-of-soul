@@ -98,7 +98,7 @@ export interface PersonalMatrix
   centerNumber: number;
 }
 
-type CompatibleMatrix = Omit<
+export type CompatibleMatrix = Omit<
   PersonalMatrix,
   "e2" | "e3" | "f2" | "f3" | "g2" | "g3" | "h2" | "h3"
 >;

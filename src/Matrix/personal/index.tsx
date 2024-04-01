@@ -4,7 +4,7 @@ import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRound
 
 import { matchaColor as matchColor } from "./styles";
 import Footer from "../../components/Footer";
-import MatrixTable from "./components/MatrixTable";
+import MatrixTables from "./components/MatrixTable";
 import theme from "../../theme";
 import "./styles.css";
 import MatrixImage from "./components/MatrixImage";
@@ -71,7 +71,7 @@ const PersonalMatrix = () => {
               flexDirection: "column",
             }}
           >
-            <MatrixTable />
+            <MatrixTables />
           </Box>
         </Box>
         <Link href={juliSiteLink} style={{ order: 4, marginTop: "30px" }}>

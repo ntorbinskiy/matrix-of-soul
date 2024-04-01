@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 import { MatrixType, useGlobalState } from "../provider";
 import theme from "../theme";
 import "../styles/App.css";
-import { useSearchParams } from "react-router-dom";
 
 interface MatrixButtonProps {
   currentType: MatrixType;
@@ -14,16 +13,13 @@ interface MatrixButtonProps {
 }
 
 const MatrixButton: FC<MatrixButtonProps> = ({ currentType, children }) => {
-  //   const state = useGlobalState();
-
-  const [_, setSearchParams] = useSearchParams();
+  const state = useGlobalState();
 
   return (
     <Button
       variant={currentType === state.matrixType ? "default" : "outlined"}
       color="success"
-      //   onClick={() => state.setData({ ...state, matrixType: currentType })}
-      onClick={() => setSearchParams(`type=${currentType}`)}
+      onClick={() => state.setData({ ...state, matrixType: currentType })}
     >
       {children}
     </Button>
