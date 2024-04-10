@@ -1,6 +1,6 @@
 import { Theme } from "@emotion/react";
 import { SxProps } from "@mui/material";
-import theme from "../../../../theme";
+import theme from "../../theme";
 
 export const svgIconStyles: SxProps<Theme> = {
   width: "100%",

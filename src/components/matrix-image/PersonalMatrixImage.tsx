@@ -1,6 +1,6 @@
 import { SvgIcon } from "@mui/material";
 
-import { PersonalMatrix } from "../../../../utils/calculate-matrix";
+import { PersonalMatrix } from "../../utils/calculate-matrix";
 import { FC } from "react";
 import { svgIconStyles } from "./styles";
 

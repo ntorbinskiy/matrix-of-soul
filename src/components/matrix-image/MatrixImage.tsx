@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { useGlobalState } from "../../../../provider";
+import { useGlobalState } from "../../provider";
 
 import CompatibleMatrixImage from "./CompatibleMatrixImage";
 import {
   calculateCompatibleMatrix,
   calculatePersonalMatrix,
-} from "../../../../utils/calculate-matrix";
+} from "../../utils/calculate-matrix";
 import PersonalMatrixImage from "./PersonalMatrixImage";
 
 const MatrixImage: FC = () => {

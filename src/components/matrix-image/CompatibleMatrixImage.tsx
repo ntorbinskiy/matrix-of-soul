@@ -1,7 +1,7 @@
 import { SvgIcon } from "@mui/material";
 
 import { FC } from "react";
-import { CompatibleMatrix } from "../../../../utils/calculate-matrix";
+import { CompatibleMatrix } from "../../utils/calculate-matrix";
 
 import { svgIconStyles } from "./styles";
 
@@ -126,7 +126,7 @@ const CompatibleMatrixImage: FC<CompatibleMatrix> = (props) => (
         fill="black"
         fontSize="15"
       >
-        <tspan x="91" y="8.77273">
+        <tspan x="48" y="8.77273">
           linea maschile
         </tspan>
       </text>
@@ -135,7 +135,7 @@ const CompatibleMatrixImage: FC<CompatibleMatrix> = (props) => (
         fill="black"
         fontSize="15"
       >
-        <tspan x="64" y="8.77273">
+        <tspan x="0" y="8.77273">
           linea femminile
         </tspan>
       </text>
