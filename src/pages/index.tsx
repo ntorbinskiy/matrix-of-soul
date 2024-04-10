@@ -1,6 +1,6 @@
 import { Button, Box } from "@mui/material";
 import { ReactNode, FC } from "react";
-import CompatibleMatrix from "../Matrix/compatible";
+import CompatibleMatrixPage from "../Matrix/compatible";
 import PersonalForm from "../Matrix/personal/components/PersonalForm";
 import Footer from "../components/Footer";
 import { MatrixType, useGlobalState } from "../provider";
@@ -73,7 +73,11 @@ const MainPage: FC = () => {
       >
         <Box sx={{ pb: "150px" }}>
           <MatrixTypeButtons />
-          {matrixType === "personal" ? <PersonalForm /> : <CompatibleMatrix />}
+          {matrixType === "personal" ? (
+            <PersonalForm />
+          ) : (
+            <CompatibleMatrixPage />
+          )}
         </Box>
         <Footer />
       </Box>

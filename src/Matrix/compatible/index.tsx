@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { Heart } from "./components/Heart";
 import CompatibleForm from "./components/Form";
 
-const CompatibleMatrix = () => {
+const CompatibleMatrixPage = () => {
   return (
     <Box
       sx={{
@@ -19,4 +19,4 @@ const CompatibleMatrix = () => {
   );
 };
 
-export default CompatibleMatrix;
+export default CompatibleMatrixPage;

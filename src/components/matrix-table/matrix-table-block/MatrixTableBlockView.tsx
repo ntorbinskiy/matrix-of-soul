@@ -17,37 +17,35 @@ interface MatrixTableBlockViewProps {
   circle3: number;
 }
 
-export const MatrixTableBlockView: FC<MatrixTableBlockViewProps> = (props) => {
-  return (
-    <Box sx={{ ...dFlexColumn }}>
-      <GreenText>{props.label}</GreenText>
+export const MatrixTableBlockView: FC<MatrixTableBlockViewProps> = (props) => (
+  <Box sx={{ ...dFlexColumn }}>
+    <GreenText>{props.label}</GreenText>
+    <Box
+      sx={{
+        display: "flex",
+
+        [theme.breakpoints.down("sm")]: {},
+      }}
+    >
       <Box
         sx={{
-          display: "flex",
-
-          [theme.breakpoints.down("sm")]: {},
+          ...dFlexColumn,
         }}
       >
+        <GreenText>{props.secondLabel}</GreenText>
+        <GreenText>{props.thirdLabel}</GreenText>
+      </Box>
+      <Box sx={setCircledNumbersStyles(" & > div > div, & > div + div")}>
         <Box
           sx={{
             ...dFlexColumn,
           }}
         >
-          <GreenText>{props.secondLabel}</GreenText>
-          <GreenText>{props.thirdLabel}</GreenText>
+          <Box>{props.circle1}</Box>
+          <Box>{props.circle2}</Box>
         </Box>
-        <Box sx={setCircledNumbersStyles(" & > div > div, & > div + div")}>
-          <Box
-            sx={{
-              ...dFlexColumn,
-            }}
-          >
-            <Box>{props.circle1}</Box>
-            <Box>{props.circle2}</Box>
-          </Box>
-          <Box>{props.circle3}</Box>
-        </Box>
+        <Box>{props.circle3}</Box>
       </Box>
     </Box>
-  );
-};
+  </Box>
+);

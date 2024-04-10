@@ -13,7 +13,7 @@ interface MatrixTable {
   wholeValue: number;
 }
 
-export interface MatrixTableArgs {
+interface MatrixTableArgs {
   a1: number;
   b1: number;
   c1: number;

@@ -1,11 +1,13 @@
 import { FC, useEffect, useState } from "react";
 
 import { useGlobalState } from "../../provider";
-import { calculatePersonalMatrix } from "../../utils/calculate-matrix";
+import {
+  calculateCompatibleMatrix,
+  calculatePersonalMatrix,
+} from "../../utils/calculate-matrix";
 import {
   parseMatrixToMatrixTableArgs,
   calculatePersonalMatrixTable,
-  calculateCompatibleMatrixTable,
 } from "./matrix-table-block/calculate-matrix-table";
 import { EndingText } from "./matrix-table-block/types";
 import MatrixTableView from "./MatrixTableView";
@@ -26,13 +28,10 @@ export const MatrixTable: FC = () => {
     personalMatrixTable.wholeValue
   );
 
-  const partner = parseMatrixToMatrixTableArgs(
-    calculatePersonalMatrix(partnerDate)
-  );
-
-  const compatibleMatrixTable = calculateCompatibleMatrixTable(
-    personal,
-    partner
+  const compatibleMatrixTable = calculatePersonalMatrixTable(
+    parseMatrixToMatrixTableArgs(
+      calculateCompatibleMatrix(personalDate, partnerDate)
+    )
   );
 
   useEffect(() => {

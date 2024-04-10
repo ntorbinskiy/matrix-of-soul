@@ -2,7 +2,7 @@ import { Box, Button, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import { MatrixHealthMap } from "../Matrix/personal/components/matrix-health-map/MatrixHealthMap";
-import MatrixImage from "../Matrix/personal/components/MatrixImage";
+import MatrixImage from "../Matrix/compatible/components/matrix-image/MatrixImage";
 import MatrixTables from "../Matrix/personal/components/MatrixTable";
 import Footer from "../components/Footer";
 import theme from "../theme";

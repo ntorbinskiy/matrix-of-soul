@@ -1,25 +1,5 @@
 import { calculateNumber } from "../../../../utils/calculate-matrix";
 
-// type HealthMapItemName =
-//   | "Sahasrara"
-//   | "Ajna"
-//   | "Vishudha"
-//   | "Anahata"
-//   | "Manipura"
-//   | "Swadhisthana"
-//   | "Muladhara"
-//   | "Generale:";
-
-// type HealthMapItemSubName =
-//   | "(Energia vitale, intelligenza)"
-//   | "(Occhio energetico)"
-//   | "(Destino)"
-//   | "(Energia della creatività)"
-//   | "(Energia vitale cosmica)"
-//   | "(Energia dell'amore e della gioia)"
-//   | "(Corpo)"
-//   | "";
-
 export enum ChacraTypes {
   chacra1,
   chacra2,
