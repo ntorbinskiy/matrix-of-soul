@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from "react";
 
-import { useGlobalState } from "../../provider";
 import {
   calculateCompatibleMatrix,
   calculatePersonalMatrix,
@@ -11,9 +10,10 @@ import {
 } from "./matrix-table-block/calculate-matrix-table";
 import { EndingText } from "./matrix-table-block/types";
 import MatrixTableView from "./MatrixTableView";
+import useSearchParamsState from "../../utils/useSearchParamsState";
 
 export const MatrixTable: FC = () => {
-  const { matrixType, personalDate, partnerDate } = useGlobalState();
+  const { matrixType, personalDate, partnerDate } = useSearchParamsState();
 
   // TODO: refactor this
 

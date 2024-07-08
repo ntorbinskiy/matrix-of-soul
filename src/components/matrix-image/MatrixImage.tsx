@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useGlobalState } from "../../provider";
 
 import CompatibleMatrixImage from "./CompatibleMatrixImage";
 import {
@@ -12,8 +11,10 @@ import {
   parsePersonalMatrixToPrognosisArgs,
 } from "./calculatePrognosis";
 
+import useSearchParamsState from "../../utils/useSearchParamsState";
+
 const MatrixImage: FC = () => {
-  const { personalDate, matrixType, partnerDate } = useGlobalState();
+  const { personalDate, matrixType, partnerDate } = useSearchParamsState();
 
   const personalMatrix = calculatePersonalMatrix(personalDate);
 

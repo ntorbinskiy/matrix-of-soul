@@ -8,58 +8,57 @@ import Footer from "../components/Footer";
 import theme from "../theme";
 import { matchaColor } from "../Matrix/personal/styles";
 import { FC } from "react";
-import { useGlobalState } from "../provider";
+
 import BDayTable from "../components/BDayTable";
 import { MatrixTable } from "../components/matrix-table/MatrixTable";
+import useSearchParamsState from "../utils/useSearchParamsState";
 
 const juliSiteLink = "https://mssg.me/juli.matrix/servizi";
 
-const PersonalMatrixResult = () => {
-  return (
-    <>
-      <MatrixImage />
-      <MatrixHealthMap />
+const PersonalMatrixResult = () => (
+  <>
+    <MatrixImage />
+    <MatrixHealthMap />
+    <Box
+      sx={{
+        "* > *": {
+          display: "flex",
+          alignItems: "center",
+          [theme.breakpoints.down("sm")]: {
+            gap: "0",
+          },
+        },
+
+        display: "flex",
+        flexWrap: "wrap",
+        [theme.breakpoints.down("lg")]: {
+          width: "100%",
+          justifyContent: "center",
+        },
+      }}
+    >
       <Box
         sx={{
-          "* > *": {
-            display: "flex",
-            alignItems: "center",
-            [theme.breakpoints.down("sm")]: {
-              gap: "0",
-            },
-          },
-
           display: "flex",
-          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "20px",
+          pt: "50px",
+          flexDirection: "column",
           [theme.breakpoints.down("lg")]: {
             width: "100%",
-            justifyContent: "center",
+            pt: 0,
           },
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "20px",
-            pt: "50px",
-            flexDirection: "column",
-            [theme.breakpoints.down("lg")]: {
-              width: "100%",
-              pt: 0,
-            },
-          }}
-        >
-          <MatrixTables />
-        </Box>
+        <MatrixTables />
       </Box>
-    </>
-  );
-};
+    </Box>
+  </>
+);
 
 const CompatibleMatrixResult = () => {
   const { partnerDate, partnerName, personalDate, personalName } =
-    useGlobalState();
+    useSearchParamsState();
 
   return (
     <>
@@ -93,7 +92,7 @@ const CompatibleMatrixResult = () => {
 };
 
 const ResultContent: FC = () => {
-  const { matrixType } = useGlobalState();
+  const { matrixType } = useSearchParamsState();
 
   return (
     <>
@@ -107,7 +106,7 @@ const ResultContent: FC = () => {
 };
 
 const ResultPage = () => {
-  const { matrixType } = useGlobalState();
+  const { matrixType } = useSearchParamsState();
 
   return (
     <Box

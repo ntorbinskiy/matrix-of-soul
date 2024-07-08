@@ -4,10 +4,8 @@ import { InputNameField, InputDateField } from "../../../components/InputField";
 import theme from "../../../theme";
 
 import { useNavigate } from "react-router-dom";
-import { useGlobalState } from "../../../provider";
 
 const CompatibleForm: FC = () => {
-  const state = useGlobalState();
   const navigate = useNavigate();
 
   const [personal, setPersonal] = useState<{
@@ -26,15 +24,10 @@ const CompatibleForm: FC = () => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
-    state.setData({
-      ...state,
-      partnerDate: partner.partnerDate,
-      partnerName: partner.partnerName,
-      personalName: personal.personalName,
-      personalDate: personal.personalDate,
-    });
-
-    navigate("/result");
+    navigate(
+      `/result?personalName=${personal.personalName}&personalDate=${personal.personalDate}
+	  &matrixType=compatible&partnerName=${partner.partnerName}&partnerDate=${partner.partnerDate}`
+    );
   };
 
   return (

@@ -14,10 +14,12 @@ import {
   ThirdTableArgs,
   calculateThirdTable,
 } from "../../../utils/calculate-tables";
-import { useGlobalState } from "../../../provider";
+
 import BDayTable from "../../../components/BDayTable";
 
 import { MatrixTable } from "../../../components/matrix-table/MatrixTable";
+
+import useSearchParamsState from "../../../utils/useSearchParamsState";
 
 interface GreenTextProps {
   children: ReactNode;
@@ -60,7 +62,7 @@ const ThirdTableBlock: FC<ThirdTableBlockProps> = (props) => {
 };
 
 const ThirdTable = () => {
-  const { personalDate } = useGlobalState();
+  const { personalDate } = useSearchParamsState();
 
   const { e1, f1, g1, h1 } = calculatePersonalMatrix(personalDate);
 
@@ -107,7 +109,7 @@ const ThirdTable = () => {
 };
 
 export const MatrixTables: FC = () => {
-  const { personalName, personalDate } = useGlobalState();
+  const { personalName, personalDate } = useSearchParamsState();
 
   return (
     <Box
@@ -120,7 +122,6 @@ export const MatrixTables: FC = () => {
       }}
     >
       <BDayTable date={personalDate} name={personalName} />
-      {/* <SecondTable /> */}
       <MatrixTable />
       <ThirdTable />
     </Box>

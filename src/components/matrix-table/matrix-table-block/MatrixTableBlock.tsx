@@ -1,7 +1,5 @@
 import { FC, useState, useEffect } from "react";
 
-import { useGlobalState } from "../../../provider";
-
 import {
   calculateCompatibleMatrix,
   calculatePersonalMatrix,
@@ -12,6 +10,7 @@ import {
 } from "./calculate-matrix-table";
 import { MatrixTableBlockView } from "./MatrixTableBlockView";
 import { Label, SecondLabel, ThirdLabel } from "./types";
+import useSearchParamsState from "../../../utils/useSearchParamsState";
 
 interface MatrixTableBlockProps {
   type: "personal" | "social";
@@ -24,7 +23,7 @@ interface Circles {
 }
 
 export const MatrixTableBlock: FC<MatrixTableBlockProps> = (props) => {
-  const { matrixType, personalDate, partnerDate } = useGlobalState();
+  const { matrixType, personalDate, partnerDate } = useSearchParamsState();
 
   const personal = parseMatrixToMatrixTableArgs(
     calculatePersonalMatrix(personalDate)

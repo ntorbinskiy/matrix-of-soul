@@ -2,7 +2,6 @@ import { Box, Button, SvgIcon, SxProps, TextField, Theme } from "@mui/material";
 import { FC, FormEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useGlobalState } from "../../../provider";
 import { matchaColor } from "../styles";
 import InputMask from "react-input-mask";
 import { InputNameField } from "../../../components/InputField";
@@ -82,12 +81,13 @@ const PersonalForm: FC = () => {
   const [date, setDate] = useState<string>("");
 
   const navigate = useNavigate();
-  const state = useGlobalState();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    state.setData({ ...state, personalName: name, personalDate: date });
-    navigate("/result");
+
+    navigate(
+      `/result?personalName=${name}&personalDate=${date}&matrixType=personal`
+    );
   };
 
   return (

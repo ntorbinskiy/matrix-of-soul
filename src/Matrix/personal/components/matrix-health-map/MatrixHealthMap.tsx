@@ -1,10 +1,11 @@
 import { ChacraTypes, calculateHealthMap } from "./calculate-health-map";
 import { calculatePersonalMatrix } from "../../../../utils/calculate-matrix";
-import { useGlobalState } from "../../../../provider";
+
 import { FC } from "react";
 
 import MatrixHealthMapView from "./MatrixHealthMapView";
 import { TableRow, TableCell, Box } from "@mui/material";
+import useSearchParamsState from "../../../../utils/useSearchParamsState";
 
 const chacraToColorsMap: Record<ChacraTypes, string> = {
   [ChacraTypes.chacra1]: "rgb(220, 147, 246)",
@@ -29,7 +30,7 @@ const chacraToNamesMap: Record<ChacraTypes, string> = {
 };
 
 export const MatrixHealthRows: FC = () => {
-  const { personalDate } = useGlobalState();
+  const { personalDate } = useSearchParamsState();
 
   const { a1, a2, a3, a4, b1, b2, b3, b4, c1, c3, d1, d3, centerNumber } =
     calculatePersonalMatrix(personalDate);

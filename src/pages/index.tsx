@@ -3,9 +3,13 @@ import { ReactNode, FC } from "react";
 import CompatibleMatrixPage from "../Matrix/compatible";
 import PersonalForm from "../Matrix/personal/components/PersonalForm";
 import Footer from "../components/Footer";
-import { MatrixType, useGlobalState } from "../provider";
+
 import theme from "../theme";
 import "../styles/App.css";
+import { useSearchParams } from "react-router-dom";
+import useSearchParamsState, {
+  MatrixType,
+} from "../utils/useSearchParamsState";
 
 interface MatrixButtonProps {
   currentType: MatrixType;
@@ -13,13 +17,14 @@ interface MatrixButtonProps {
 }
 
 const MatrixButton: FC<MatrixButtonProps> = ({ currentType, children }) => {
-  const state = useGlobalState();
+  const [_, setSearchParams] = useSearchParams();
+  const { matrixType } = useSearchParamsState();
 
   return (
     <Button
-      variant={currentType === state.matrixType ? "default" : "outlined"}
+      variant={currentType === matrixType ? "default" : "outlined"}
       color="success"
-      onClick={() => state.setData({ ...state, matrixType: currentType })}
+      onClick={() => setSearchParams(`matrixType=${currentType}`)}
     >
       {children}
     </Button>
@@ -59,7 +64,7 @@ const MatrixTypeButtons: FC = () => {
 };
 
 const MainPage: FC = () => {
-  const { matrixType } = useGlobalState();
+  const { matrixType } = useSearchParamsState();
 
   return (
     <>
