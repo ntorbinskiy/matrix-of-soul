@@ -3,12 +3,21 @@ import { SvgIcon } from "@mui/material";
 import { PersonalMatrix } from "../../utils/calculate-matrix";
 import { FC } from "react";
 import { svgIconStyles } from "./styles";
+import { MatrixPrognosis } from "./calculatePrognosis";
 
-const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
+interface PersonalMatrixImageMatrix {
+  matrix: PersonalMatrix;
+  prognosis: MatrixPrognosis;
+}
+
+const PersonalMatrixImage: FC<PersonalMatrixImageMatrix> = ({
+  matrix,
+  prognosis,
+}) => (
   <SvgIcon sx={{ ...svgIconStyles }}>
     <svg
-      width="932"
-      height="1039"
+      width="800"
+      height="800"
       viewBox="0 0 932 1039"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +67,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       <path
         d="M740.211 785.18C737.629 787.678 731.451 793.085 727.4 794.72C723.349 796.356 559.213 864.735 477.651 898.72C474.473 899.166 467.822 899.937 466.64 899.453"
         stroke="black"
-        stroke-linejoin="bevel"
+        strokeLinejoin="bevel"
       />
       <circle
         cx="605.136"
@@ -74,7 +83,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.gd.number1}
         </tspan>
       </text>
       <text
@@ -83,7 +92,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.gd.number2}
         </tspan>
       </text>
       <text
@@ -92,7 +101,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.gd.number3}
         </tspan>
       </text>
       <text
@@ -101,7 +110,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.gd.number4}
         </tspan>
       </text>
       <text
@@ -110,7 +119,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.gd.number5}
         </tspan>
       </text>
       <text
@@ -119,7 +128,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.gd.number6}
         </tspan>
       </text>
       <text
@@ -128,7 +137,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.gd.number7}
         </tspan>
       </text>
       <text transform="translate(501.989 855)" fill="#8E8E8E" fontSize="10">
@@ -211,7 +220,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       <path
         d="M187.636 781.18C190.218 783.678 196.395 789.085 200.446 790.72C204.497 792.356 368.634 860.735 450.196 894.72C453.374 895.166 460.025 895.937 461.207 895.453"
         stroke="black"
-        stroke-linejoin="bevel"
+        strokeLinejoin="bevel"
       />
       <circle
         cx="4.5"
@@ -227,7 +236,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.dh.number7}
         </tspan>
       </text>
       <text
@@ -236,7 +245,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.dh.number6}
         </tspan>
       </text>
       <text
@@ -245,7 +254,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.dh.number5}
         </tspan>
       </text>
       <text
@@ -254,7 +263,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.dh.number4}
         </tspan>
       </text>
       <text
@@ -263,7 +272,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.dh.number3}
         </tspan>
       </text>
       <text
@@ -272,7 +281,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.dh.number2}
         </tspan>
       </text>
       <text
@@ -281,7 +290,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.dh.number1}
         </tspan>
       </text>
       <text transform="translate(214.998 794)" fill="#8E8E8E" fontSize="10">
@@ -364,7 +373,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       <path
         d="M85.6401 520C85.7293 523.592 86.3432 531.778 88.0847 535.784C89.8263 539.791 158.912 703.631 193.237 785.051C195.19 787.597 199.392 792.81 200.574 793.294"
         stroke="black"
-        stroke-linejoin="bevel"
+        strokeLinejoin="bevel"
       />
       <circle
         cx="4.5"
@@ -376,37 +385,37 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text transform="translate(84 570.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ha.number7}
         </tspan>
       </text>
       <text transform="translate(95 596.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ha.number6}
         </tspan>
       </text>
       <text transform="translate(108 624.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ha.number5}
         </tspan>
       </text>
       <text transform="translate(117 652.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ha.number4}
         </tspan>
       </text>
       <text transform="translate(130 678.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ha.number3}
         </tspan>
       </text>
       <text transform="translate(140 705.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ha.number2}
         </tspan>
       </text>
       <text transform="translate(153 733.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ha.number1}
         </tspan>
       </text>
       <text transform="translate(110.27 569.375)" fill="#8E8E8E" fontSize="10">
@@ -489,7 +498,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       <path
         d="M847.5 516C847.41 519.592 846.797 527.778 845.055 531.784C843.313 535.791 774.228 699.631 739.903 781.051C737.95 783.597 733.747 788.81 732.565 789.294"
         stroke="black"
-        stroke-linejoin="bevel"
+        strokeLinejoin="bevel"
       />
       <circle
         cx="793.64"
@@ -501,37 +510,37 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text transform="translate(835.14 566.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.cg.number1}
         </tspan>
       </text>
       <text transform="translate(824.14 592.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.cg.number2}
         </tspan>
       </text>
       <text transform="translate(811.14 620.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.cg.number3}
         </tspan>
       </text>
       <text transform="translate(802.14 648.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.cg.number4}
         </tspan>
       </text>
       <text transform="translate(789.14 674.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.cg.number5}
         </tspan>
       </text>
       <text transform="translate(779.14 701.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.cg.number6}
         </tspan>
       </text>
       <text transform="translate(766.14 729.375)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.cg.number7}
         </tspan>
       </text>
       <text transform="translate(768.13 566)" fill="#8E8E8E" fontSize="10">
@@ -614,7 +623,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       <path
         d="M845.5 521.375C845.41 517.783 844.797 509.597 843.055 505.591C841.313 501.585 772.228 337.744 737.903 256.325C735.95 253.778 731.747 248.565 730.565 248.081"
         stroke="black"
-        stroke-linejoin="bevel"
+        strokeLinejoin="bevel"
       />
       <circle
         cx="4.5"
@@ -626,37 +635,37 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text transform="translate(833.14 454)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.fc.number7}
         </tspan>
       </text>
       <text transform="translate(822.14 428)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.fc.number6}
         </tspan>
       </text>
       <text transform="translate(809.14 400)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.fc.number5}
         </tspan>
       </text>
       <text transform="translate(800.14 372)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.fc.number4}
         </tspan>
       </text>
       <text transform="translate(787.14 346)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.fc.number3}
         </tspan>
       </text>
       <text transform="translate(777.14 319)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.fc.number2}
         </tspan>
       </text>
       <text transform="translate(764.14 291)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.fc.number1}
         </tspan>
       </text>
       <text transform="translate(768.13 458)" fill="#8E8E8E" fontSize="10">
@@ -739,7 +748,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       <path
         d="M738.211 253.563C735.629 251.065 729.451 245.658 725.4 244.023C721.349 242.387 557.213 174.008 475.651 140.023C472.473 139.577 465.822 138.806 464.64 139.29"
         stroke="black"
-        stroke-linejoin="bevel"
+        strokeLinejoin="bevel"
       />
       <circle
         cx="4.5"
@@ -755,7 +764,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.bf.number7}
         </tspan>
       </text>
       <text
@@ -764,7 +773,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.bf.number6}
         </tspan>
       </text>
       <text
@@ -773,7 +782,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.bf.number5}
         </tspan>
       </text>
       <text
@@ -782,7 +791,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.bf.number4}
         </tspan>
       </text>
       <text
@@ -791,7 +800,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.bf.number3}
         </tspan>
       </text>
       <text
@@ -800,7 +809,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.bf.number2}
         </tspan>
       </text>
       <text
@@ -809,7 +818,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.bf.number1}
         </tspan>
       </text>
       <text transform="translate(467.998 163)" fill="#8E8E8E" fontSize="10">
@@ -892,7 +901,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       <path
         d="M192.636 254.563C195.219 252.065 201.396 246.658 205.447 245.023C209.498 243.387 373.634 175.008 455.196 141.023C458.374 140.577 465.026 139.806 466.208 140.29"
         stroke="black"
-        stroke-linejoin="bevel"
+        strokeLinejoin="bevel"
       />
       <circle
         cx="327.711"
@@ -908,7 +917,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.eb.number1}
         </tspan>
       </text>
       <text
@@ -917,7 +926,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.eb.number2}
         </tspan>
       </text>
       <text
@@ -926,7 +935,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.eb.number3}
         </tspan>
       </text>
       <text
@@ -935,7 +944,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.eb.number4}
         </tspan>
       </text>
       <text
@@ -944,7 +953,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.eb.number5}
         </tspan>
       </text>
       <text
@@ -953,7 +962,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.eb.number6}
         </tspan>
       </text>
       <text
@@ -962,7 +971,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         fontSize="13"
       >
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.eb.number7}
         </tspan>
       </text>
       <text transform="translate(238.174 235)" fill="#8E8E8E" fontSize="10">
@@ -1009,42 +1018,42 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       <path
         d="M85.6401 520.375C85.7293 516.783 86.3432 508.597 88.0847 504.591C89.8263 500.585 158.912 336.744 193.237 255.325C195.19 252.778 199.392 247.565 200.574 247.081"
         stroke="black"
-        stroke-linejoin="bevel"
+        strokeLinejoin="bevel"
       />
       <circle cx="139.5" cy="382.5" r="4" fill="white" stroke="black" />
       <text transform="translate(84 453)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ae.number1}
         </tspan>
       </text>
       <text transform="translate(95 427)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ae.number2}
         </tspan>
       </text>
       <text transform="translate(108 399)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ae.number3}
         </tspan>
       </text>
       <text transform="translate(117 371)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ae.number4}
         </tspan>
       </text>
       <text transform="translate(130 345)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ae.number5}
         </tspan>
       </text>
       <text transform="translate(140 318)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ae.number6}
         </tspan>
       </text>
       <text transform="translate(153 290)" fill="black" fontSize="13">
         <tspan x="0.0429688" y="12.7273">
-          12
+          {prognosis.ae.number7}
         </tspan>
       </text>
       <text transform="translate(103.5 455)" fill="#8E8E8E" fontSize="10">
@@ -1195,7 +1204,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       <circle cx="467.657" cy="520.598" r="35" fill="#EFD700" />
       <text fill="white" fontSize="40">
         <tspan x="467" y="535.144">
-          {props.centerNumber}
+          {matrix.centerNumber}
         </tspan>
       </text>
       <circle
@@ -1208,7 +1217,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="35">
         <tspan x="215" y="781.325">
-          {props.h1}
+          {matrix.h1}
         </tspan>
       </text>
       <circle
@@ -1221,7 +1230,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="35">
         <tspan x="715" y="777.325">
-          {props.g1}
+          {matrix.g1}
         </tspan>
       </text>
       <circle
@@ -1234,7 +1243,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="35">
         <tspan x="710" y="285.325">
-          {props.f1}
+          {matrix.f1}
         </tspan>
       </text>
       <circle
@@ -1247,31 +1256,31 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="35">
         <tspan x="219" y="281.727">
-          {props.e1}
+          {matrix.e1}
         </tspan>
       </text>
       <circle cx="467.657" cy="867.598" r="35" fill="#FF6363" />
       <text fill="white" fontSize="40">
         <tspan x="467" y="882.144">
-          {props.d1}
+          {matrix.d1}
         </tspan>
       </text>
       <circle cx="814.657" cy="517.598" r="35" fill="#FF6363" />
       <text fill="white" fontSize="40">
         <tspan x="813" y="532.144">
-          {props.c1}
+          {matrix.c1}
         </tspan>
       </text>
       <circle cx="467" cy="172" r="35" fill="#AD52F5" />
       <text fill="white" fontSize="40">
         <tspan x="465" y="186.545">
-          {props.b1}
+          {matrix.b1}
         </tspan>
       </text>
       <circle cx="118.657" cy="520.598" r="35" fill="#AD52F5" />
       <text fill="white" fontSize="40">
         <tspan x="115" y="535.144">
-          {props.a1}
+          {matrix.a1}
         </tspan>
       </text>
       <circle
@@ -1284,7 +1293,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="30">
         <tspan x="753" y="531.507">
-          {props.c2}
+          {matrix.c2}
         </tspan>
       </text>
       <circle
@@ -1297,7 +1306,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="21">
         <tspan x="290" y="351.234">
-          {props.e3}
+          {matrix.e3}
         </tspan>
       </text>
       <circle
@@ -1310,7 +1319,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="21">
         <tspan x="638" y="355.234">
-          {props.f3}
+          {matrix.f3}
         </tspan>
       </text>
       <circle
@@ -1322,8 +1331,8 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         strokeWidth="2"
       />
       <text fill="black" fontSize="21">
-        <tspan x="633.094" y="699.235">
-          0
+        <tspan x="640" y="699.235">
+          {matrix.g3}
         </tspan>
       </text>
       <circle
@@ -1336,19 +1345,19 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="21">
         <tspan x="290" y="702.235">
-          {props.h3}
+          {matrix.h3}
         </tspan>
       </text>
       <circle cx="178.657" cy="520.598" r="25" fill="#3D87F7" />
       <text fill="white" fontSize="30">
         <tspan x="175" y="531.507">
-          {props.a2}
+          {matrix.a2}
         </tspan>
       </text>
       <circle cx="468" cy="232" r="25" fill="#3D87F7" />
       <text fill="white" fontSize="30">
         <tspan x="465" y="242.909">
-          {props.b2}
+          {matrix.b2}
         </tspan>
       </text>
       <circle
@@ -1361,7 +1370,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="30">
         <tspan x="672" y="733.507">
-          {props.g2}
+          {matrix.g2}
         </tspan>
       </text>
       <circle
@@ -1374,7 +1383,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="30">
         <tspan x="467" y="819.507">
-          {props.d2}
+          {matrix.d2}
         </tspan>
       </text>
       <circle
@@ -1387,7 +1396,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="30">
         <tspan x="256" y="735.507">
-          {props.h2}
+          {matrix.h2}
         </tspan>
       </text>
       <circle
@@ -1400,7 +1409,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="30">
         <tspan x="670" y="329.507">
-          {props.f2}
+          {matrix.f2}
         </tspan>
       </text>
       <circle
@@ -1413,7 +1422,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="30">
         <tspan x="261" y="321.507">
-          {props.e2}
+          {matrix.e2}
         </tspan>
       </text>
       <circle
@@ -1426,7 +1435,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="21">
         <tspan x="632" y="597.235">
-          {props.o}
+          {matrix.o}
         </tspan>
       </text>
       <circle
@@ -1439,7 +1448,7 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="21">
         <tspan x="528" y="699.235">
-          {props.n}
+          {matrix.n}
         </tspan>
       </text>
       <circle
@@ -1452,43 +1461,43 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       />
       <text fill="black" fontSize="21">
         <tspan x="577" y="638.235">
-          {props.k}
+          {matrix.k}
         </tspan>
       </text>
       <circle cx="466.657" cy="384.598" r="20" fill="#2DEB62" />
       <text fill="white" fontSize="21">
         <tspan x="465" y="392.234">
-          {props.b4}
+          {matrix.b4}
         </tspan>
       </text>
       <circle cx="330.657" cy="520.598" r="20" fill="#2DEB62" />
       <text fill="white" fontSize="21">
         <tspan x="330" y="528.235">
-          {props.a4}
+          {matrix.a4}
         </tspan>
       </text>
       <circle cx="223.657" cy="519.598" r="20" fill="#16E9DD" />
       <text fill="white" fontSize="21">
         <tspan x="222" y="527.235">
-          {props.a3}
+          {matrix.a3}
         </tspan>
       </text>
       <circle cx="467" cy="277" r="20" fill="#16E9DD" />
       <text fill="white" fontSize="21">
         <tspan x="465" y="284.636">
-          {props.b3}
+          {matrix.b3}
         </tspan>
       </text>
       <circle cx="467.657" cy="763.598" r="20" fill="#FABF26" />
       <text fill="white" fontSize="21">
         <tspan x="467" y="771.235">
-          {props.d3}
+          {matrix.d3}
         </tspan>
       </text>
       <circle cx="709.657" cy="520.598" r="20" fill="#FABF26" />
       <text fill="white" fontSize="21">
         <tspan x="708" y="528.235">
-          {props.c3}
+          {matrix.c3}
         </tspan>
       </text>
       <path
@@ -1504,14 +1513,14 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
         stroke="#B0DF63"
         strokeWidth="3"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M598.5 560.2V563.8M598.5 578.2V581.8"
         stroke="#B0DF63"
         strokeWidth="3"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <text fill="black" fontSize="20">
         <tspan x="64.25" y="529.273">
@@ -1536,6 +1545,32 @@ const PersonalMatrixImage: FC<PersonalMatrix> = (props) => (
       <text fill="black" fontSize="20">
         <tspan x="181.102" y="239.273">
           10
+        </tspan>
+      </text>
+      <circle
+        cx="538"
+        cy="518"
+        r="34"
+        fill="white"
+        stroke="#A3A3A3"
+        strokeWidth="2"
+      />
+      <text fill="black" fontSize="35">
+        <tspan x="537.5" y="530.727">
+          {matrix.centerNumber2}
+        </tspan>
+      </text>
+      <circle
+        cx="601"
+        cy="521"
+        r="19"
+        fill="white"
+        stroke="#A3A3A3"
+        strokeWidth="2"
+      />
+      <text fill="black" fontSize="21">
+        <tspan x="601" y="528.636">
+          {matrix.centerNumber3}
         </tspan>
       </text>
     </svg>

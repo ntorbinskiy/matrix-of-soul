@@ -46,6 +46,7 @@ const PersonalMatrixResult = () => {
             flexDirection: "column",
             [theme.breakpoints.down("lg")]: {
               width: "100%",
+              pt: 0,
             },
           }}
         >

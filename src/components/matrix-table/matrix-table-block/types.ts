@@ -4,7 +4,7 @@ type CompatibleLabel = "Rapporto:" | "Partenariato:";
 
 export type Label = PersonalLabel | CompatibleLabel;
 
-export type SecondLabel = "Cielo:" | "Uomo:";
-export type ThirdLabel = "Terra:" | "Donna:";
+export type SecondLabel = "Terra:" | "Donna:";
+export type ThirdLabel = "Cielo:" | "Uomo:";
 
 export type EndingText = "Generale:" | "Unità:";

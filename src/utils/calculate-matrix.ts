@@ -96,11 +96,22 @@ export interface PersonalMatrix
   c1: number;
   d1: number;
   centerNumber: number;
+  centerNumber2: number;
+  centerNumber3: number;
 }
 
 export type CompatibleMatrix = Omit<
   PersonalMatrix,
-  "e2" | "e3" | "f2" | "f3" | "g2" | "g3" | "h2" | "h3"
+  | "e2"
+  | "e3"
+  | "f2"
+  | "f3"
+  | "g2"
+  | "g3"
+  | "h2"
+  | "h3"
+  | "centerNumber2"
+  | "centerNumber3"
 >;
 
 const calculateRowA = (a1: number, centerNumber: number): RowA => {
@@ -213,6 +224,9 @@ export const calculatePersonalMatrix = (
   const { k } = calculateRowK(c3, d3);
   const { n, o } = calculateNAndO(k, c3, d3);
 
+  const centerNumber2 = calculateNumber(e1 + f1 + g1 + h1);
+  const centerNumber3 = calculateNumber(centerNumber2 + centerNumber);
+
   return {
     a1,
     a2,
@@ -244,6 +258,8 @@ export const calculatePersonalMatrix = (
     n,
     o,
     centerNumber,
+    centerNumber2,
+    centerNumber3,
   };
 };
 

@@ -34,8 +34,8 @@ export const MatrixTableBlock: FC<MatrixTableBlockProps> = (props) => {
 
   const [label, setLabel] = useState<Label>("Personale:");
 
-  const [secondLabel, setSecondLabel] = useState<SecondLabel>("Cielo:");
-  const [thirdLabel, setThirdLabel] = useState<ThirdLabel>("Terra:");
+  const [secondLabel, setSecondLabel] = useState<SecondLabel>("Terra:");
+  const [thirdLabel, setThirdLabel] = useState<ThirdLabel>("Cielo:");
 
   const [circles, setCircles] = useState<Circles>({
     circle1: earth,
@@ -51,8 +51,8 @@ export const MatrixTableBlock: FC<MatrixTableBlockProps> = (props) => {
     );
 
     if (props.type === "social") {
-      setSecondLabel("Uomo:");
-      setThirdLabel("Donna:");
+      setSecondLabel("Donna:");
+      setThirdLabel("Uomo:");
 
       if (matrixType === "personal") {
         setLabel("Sociale:");
@@ -77,9 +77,15 @@ export const MatrixTableBlock: FC<MatrixTableBlockProps> = (props) => {
         circle3: compatibleMatrixTable.skyPlusEarth,
       });
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [matrixType, props.type]);
+  }, [
+    female,
+    male,
+    malePlusFemale,
+    matrixType,
+    partnerDate,
+    personalDate,
+    props.type,
+  ]);
 
   return (
     <MatrixTableBlockView
