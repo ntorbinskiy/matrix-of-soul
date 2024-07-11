@@ -6,7 +6,7 @@ import theme from "../theme";
 import { matchaColor } from "../Matrix/personal/styles";
 import { Link as RouterLink } from "react-router-dom";
 
-const telegramLink = "https://t.me/julimatrix";
+const telegramLink = "https://t.me/ijolli";
 export const instagramLink = "https://www.instagram.com/juli.matrix/";
 
 const styles: SxProps<Theme> = {
