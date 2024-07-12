@@ -13,7 +13,7 @@ import BDayTable from "../components/BDayTable";
 import { MatrixTable } from "../components/matrix-table/MatrixTable";
 import useSearchParamsState from "../utils/useSearchParamsState";
 
-const juliSiteLink = "https://mssg.me/juli.matrix/servizi";
+const juliSiteLink = "https://julimatrix.com";
 
 const PersonalMatrixResult = () => (
   <>

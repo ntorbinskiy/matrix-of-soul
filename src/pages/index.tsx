@@ -1,5 +1,5 @@
 import { Button, Box } from "@mui/material";
-import { ReactNode, FC } from "react";
+import { ReactNode, FC, useEffect } from "react";
 import CompatibleMatrixPage from "../Matrix/compatible";
 import PersonalForm from "../Matrix/personal/components/PersonalForm";
 import Footer from "../components/Footer";
@@ -66,6 +66,12 @@ const MatrixTypeButtons: FC = () => {
 const MainPage: FC = () => {
   const { matrixType } = useSearchParamsState();
 
+  const [_, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    setSearchParams("matrixType=personal");
+  }, []);
+
   return (
     <>
       <Box
@@ -78,10 +84,10 @@ const MainPage: FC = () => {
       >
         <Box sx={{ pb: "150px" }}>
           <MatrixTypeButtons />
-          {matrixType === "personal" ? (
-            <PersonalForm />
-          ) : (
+          {matrixType === "compatible" ? (
             <CompatibleMatrixPage />
+          ) : (
+            <PersonalForm />
           )}
         </Box>
         <Footer />

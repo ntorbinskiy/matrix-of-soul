@@ -24,7 +24,7 @@ const useSearchParamsState = (): State => {
 
   const matrixType: MatrixType = narrowMatrixTypeString(matrixTypeParam)
     ? matrixTypeParam
-    : "compatible";
+    : "personal";
 
   return {
     matrixType,
